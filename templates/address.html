@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Addresses | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/address.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="address-page">
+
+    <div class="address-container">
+
+        <div class="address-header">
+
+            <span class="section-label">
+                DELIVERY DETAILS
+            </span>
+
+            <h1>
+                My Addresses
+            </h1>
+
+            <p>
+                Manage the addresses you use for your VEZORA orders.
+            </p>
+
+        </div>
+
+
+        <div class="address-top">
+
+            <span>
+                SAVED ADDRESSES
+            </span>
+
+            <a href="{{ url_for('addaddress') }}"
+               class="add-address-button">
+
+                + ADD NEW ADDRESS
+
+            </a>
+
+        </div>
+
+
+        {% if addresses %}
+
+        <div class="address-grid">
+
+            {% for item in addresses %}
+
+            <article class="address-card">
+
+                <div class="address-card-top">
+
+                    <div class="address-type">
+
+                        <span class="type-icon">
+                            ◇
+                        </span>
+
+                        <strong>
+                            {{ item.address_type }}
+                        </strong>
+
+                    </div>
+
+
+                    {% if item.is_default %}
+
+                    <span class="default-badge">
+                        DEFAULT
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="address-content">
+
+                    <h2>
+                        {{ item.full_name }}
+                    </h2>
+
+                    <p class="address-phone">
+                        {{ item.phone }}
+                    </p>
+
+                    <p>
+                        {{ item.address_line }}
+                    </p>
+
+                    <p>
+                        {{ item.city }},
+                        {{ item.state }}
+                        - {{ item.pincode }}
+                    </p>
+
+                </div>
+
+
+                <div class="address-actions">
+
+                    {% if not item.is_default %}
+
+                    <a href="{{ url_for('setdefaultaddress',
+                                        address_id=item.id) }}"
+                       class="default-link">
+
+                        SET AS DEFAULT
+
+                    </a>
+
+                    {% else %}
+
+                    <span class="selected-default">
+                        DEFAULT ADDRESS
+                    </span>
+
+                    {% endif %}
+
+
+                    <a href="{{ url_for('deleteaddress',
+                                        address_id=item.id) }}"
+                       class="delete-link"
+                       onclick="return confirm('Remove this address?');">
+
+                        REMOVE
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <div class="address-empty">
+
+            <div class="empty-symbol">
+                ◇
+            </div>
+
+            <span class="section-label">
+                NO SAVED ADDRESSES
+            </span>
+
+            <h2>
+                Add your first address.
+            </h2>
+
+            <p>
+                Save your delivery details to make checkout
+                quicker and easier.
+            </p>
+
+            <a href="{{ url_for('addaddress') }}"
+               class="browse-button">
+
+                ADD NEW ADDRESS
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

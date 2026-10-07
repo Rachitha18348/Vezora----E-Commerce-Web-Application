@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | VEZORA
+{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+
+    <!-- =====================================================
+     DASHBOARD HEADER
+====================================================== -->
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="section-label">
+                    WELCOME TO VEZORA
+                </span>
+
+                <h1>
+                    Welcome, {{ session.get("user_name", "Guest") }}
+                </h1>
+
+                <p>
+                    Discover timeless jewelry and refined watches
+                    curated for every moment.
+                </p>
+
+            </div>
+
+            <a href="{{ url_for('products') }}" class="dashboard-shop-button">
+                SHOP ALL
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+         QUICK ACTIONS
+    ================================================== -->
+
+        <div class="quick-actions">
+
+            <a href="{{ url_for('myfav') }}" class="quick-card">
+
+                <span class="quick-icon">
+                    ♡
+                </span>
+
+                <div>
+                    <h3>
+                        Favorites
+                    </h3>
+
+                    <p>
+                        Your saved pieces
+                    </p>
+                </div>
+
+            </a>
+
+
+            <a href="{{ url_for('mycart') }}" class="quick-card">
+
+                <span class="quick-icon">
+                    🛒
+                </span>
+
+                <div>
+                    <h3>
+                        My Cart
+                    </h3>
+
+                    <p>
+                        View your selected items
+                    </p>
+                </div>
+
+            </a>
+
+
+            <a href="{{ url_for('myorders') }}" class="quick-card">
+
+                <span class="quick-icon">
+                    ◷
+                </span>
+
+                <div>
+                    <h3>
+                        My Orders
+                    </h3>
+
+                    <p>
+                        Track your purchases
+                    </p>
+                </div>
+
+            </a>
+
+
+            <a href="{{ url_for('profile') }}" class="quick-card">
+
+                <span class="quick-icon">
+                    ◯
+                </span>
+
+                <div>
+                    <h3>
+                        My Profile
+                    </h3>
+
+                    <p>
+                        Manage your account
+                    </p>
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+         FEATURED PRODUCTS
+    ================================================== -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-label">
+                    CURATED FOR YOU
+                </span>
+
+                <h2>
+                    Featured Pieces
+                </h2>
+
+            </div>
+
+            <a href="{{ url_for('products') }}" class="view-all">
+                VIEW ALL →
+            </a>
+
+        </div>
+
+
+        {% if products %}
+
+        <div class="product-grid">
+
+            {% for product in products %}
+
+            <article class="product-card">
+
+
+                <!-- Product Image -->
+
+                <div class="product-image">
+
+                    {% if product.image %}
+
+                    <img src="{{ product.image }}" alt="{{ product.name }}">
+
+                    {% else %}
+
+                    <div class="product-placeholder">
+
+                        <span>
+                            VEZORA
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- Favorite -->
+
+                    <a href="{% if product.is_favorite %}
+                            {{ url_for('removefromfav', product_id=product.id) }}
+                         {% else %}
+                            {{ url_for('addtofav', product_id=product.id) }}
+                         {% endif %}" class="favorite-button"
+                        title="{% if product.is_favorite %}Remove from Favorites{% else %}Add to Favorites{% endif %}">
+
+                        {% if product.is_favorite %}
+                        ♥
+                        {% else %}
+                        ♡
+                        {% endif %}
+
+                    </a>
+
+                </div>
+
+
+                <!-- Product Information -->
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        {{ product.category }}
+                    </span>
+
+
+                    <h3>
+                        <a href="{{ url_for('productdetails', product_id=product.id) }}">
+                            {{ product.name }}
+                        </a>
+                    </h3>
+
+
+                    {% if product.description %}
+
+                    <p class="product-description">
+                        {{ product.description }}
+                    </p>
+
+                    {% endif %}
+
+
+                    <div class="product-bottom">
+
+                        <span class="product-price">
+                            ₹{{ "%.2f"|format(product.price) }}
+                        </span>
+
+
+                        {% if product.rating and product.rating > 0 %}
+
+                        <span class="product-rating">
+                            ★ {{ "%.1f"|format(product.rating) }}
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <a href="{{ url_for('addtocart', product_id=product.id) }}" class="add-cart-button">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- No Products -->
+
+        <div class="empty-products">
+
+            <div class="empty-icon">
+                ◇
+            </div>
+
+            <h3>
+                No Products Available
+            </h3>
+
+            <p>
+                New pieces are being prepared for the VEZORA collection.
+            </p>
+
+            <a href="{{ url_for('products') }}" class="dashboard-shop-button">
+                EXPLORE SHOP
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- =================================================
+         VEZORA BRAND SECTION
+    ================================================== -->
+
+        <section class="dashboard-story">
+
+            <div class="story-content">
+
+                <span class="section-label">
+                    THE VEZORA EDIT
+                </span>
+
+                <h2>
+                    The little details matter.
+                </h2>
+
+                <p>
+                    From everyday essentials to pieces made for
+                    unforgettable moments, VEZORA brings together
+                    jewelry and watches designed to become part
+                    of your story.
+                </p>
+
+                <a href="{{ url_for('categories') }}" class="story-link">
+                    EXPLORE COLLECTION →
+                </a>
+
+            </div>
+
+            <div class="story-detail">
+
+                <span>
+                    TIMELESS
+                </span>
+
+                <span>
+                    REFINED
+                </span>
+
+                <span>
+                    VEZORA
+                </span>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+</section>
+
+{% endblock %}

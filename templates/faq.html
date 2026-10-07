@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ | VEZORA{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/faq.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="faq-page">
+
+
+<div class="faq-header">
+
+    <p class="faq-eyebrow">
+        HELP CENTER
+    </p>
+
+    <h1>Frequently Asked Questions</h1>
+
+    <p>
+        Find answers to common questions about VEZORA,
+        orders, payments, delivery, and returns.
+    </p>
+
+</div>
+
+
+<div class="faq-container">
+
+
+    <div class="faq-item">
+
+        <h2>
+            How can I place an order?
+        </h2>
+
+        <p>
+            Browse our products, open the product you want,
+            add it to your cart, and proceed through checkout.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h2>
+            What payment methods are available?
+        </h2>
+
+        <p>
+            VEZORA supports online payments through Razorpay.
+            Razorpay provides available options such as UPI,
+            cards, and net banking. Cash on Delivery is also available.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h2>
+            Can I pay using UPI?
+        </h2>
+
+        <p>
+            Yes. Select Online Payment during checkout and
+            continue to Razorpay. You can then select UPI if
+            it is available in the Razorpay checkout.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h2>
+            Is Cash on Delivery available?
+        </h2>
+
+        <p>
+            Yes. Select Cash on Delivery during checkout
+            to place your order without making an online payment.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h2>
+            How can I track my order?
+        </h2>
+
+        <p>
+            After placing an order, go to My Orders and select
+            View Order Details. You can then view the current
+            order status and tracking information.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h2>
+            Where can I view my previous orders?
+        </h2>
+
+        <p>
+            After logging in, open My Orders from your account
+            dashboard to view your order history.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h2>
+            What happens if my payment fails?
+        </h2>
+
+        <p>
+            If an online payment is unsuccessful, your order is
+            not completed as a paid order. You can return to the
+            payment page and try again.
+        </p>
+
+    </div>
+
+
+    <div class="faq-item">
+
+        <h2>
+            How can I contact VEZORA support?
+        </h2>
+
+        <p>
+            Visit the Contact Us page and send us your question.
+            Our support team will get back to you.
+        </p>
+
+    </div>
+
+
+</div>
+
+</section>
+
+{% endblock %}

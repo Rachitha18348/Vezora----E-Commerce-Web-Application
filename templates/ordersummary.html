@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %}
+Order Summary | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/ordersummary.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="order-summary-page">
+
+    <div class="order-summary-container">
+
+        <div class="order-summary-header">
+
+            <span class="section-label">
+                REVIEW YOUR ORDER
+            </span>
+
+            <h1>
+                Order Summary
+            </h1>
+
+            <p>
+                Everything looks good? Continue to payment.
+            </p>
+
+        </div>
+
+
+        <form method="POST">
+
+            <div class="order-summary-layout">
+
+                <div class="order-summary-main">
+
+                    <!-- DELIVERY ADDRESS -->
+
+                    <div class="summary-section">
+
+                        <div class="summary-section-heading">
+
+                            <span class="step-number">
+                                01
+                            </span>
+
+                            <div>
+
+                                <span class="section-label">
+                                    DELIVERY
+                                </span>
+
+                                <h2>
+                                    Deliver To
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="selected-address">
+
+                            <div class="selected-address-top">
+
+                                <strong>
+                                    {{ address.full_name }}
+                                </strong>
+
+                                <span>
+                                    {{ address.address_type }}
+                                </span>
+
+                            </div>
+
+
+                            <p>
+                                {{ address.address_line }}
+                            </p>
+
+                            <p>
+                                {{ address.city }},
+                                {{ address.state }}
+                                - {{ address.pincode }}
+                            </p>
+
+                            <p class="address-phone">
+                                {{ address.phone }}
+                            </p>
+
+
+                            <a href="{{ url_for('checkout') }}"
+                               class="change-address">
+
+                                CHANGE ADDRESS
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRODUCTS -->
+
+                    <div class="summary-section">
+
+                        <div class="summary-section-heading">
+
+                            <span class="step-number">
+                                02
+                            </span>
+
+                            <div>
+
+                                <span class="section-label">
+                                    YOUR SELECTION
+                                </span>
+
+                                <h2>
+                                    Order Items
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="summary-items">
+
+                            {% for item in cart_items %}
+
+                            <div class="summary-item">
+
+                                <div class="summary-item-image">
+
+                                    {% if item.image %}
+
+                                    <img src="{{ item.image }}"
+                                         alt="{{ item.name }}">
+
+                                    {% else %}
+
+                                    <span>
+                                        VEZORA
+                                    </span>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="summary-item-info">
+
+                                    <span class="item-category">
+                                        {{ item.category }}
+                                    </span>
+
+                                    <h3>
+                                        {{ item.name }}
+                                    </h3>
+
+                                    <p>
+                                        Quantity: {{ item.quantity }}
+                                    </p>
+
+                                </div>
+
+
+                                <div class="summary-item-price">
+
+                                    ₹{{ "%.2f"|format(item.item_total) }}
+
+                                </div>
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- NOTE -->
+
+                    <div class="order-note">
+
+                        <span>
+                            ◇
+                        </span>
+
+                        <p>
+                            Please review your delivery details and
+                            selected pieces carefully before continuing.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRICE SUMMARY -->
+
+                <aside class="final-summary">
+
+                    <div class="final-summary-box">
+
+                        <span class="summary-label">
+                            PAYMENT DETAILS
+                        </span>
+
+                        <h2>
+                            Price Summary
+                        </h2>
+
+
+                        <div class="price-row">
+
+                            <span>
+                                Items
+                            </span>
+
+                            <span>
+                                {{ cart_items|length }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="price-row">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+                            <span>
+                                ₹{{ "%.2f"|format(subtotal) }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="price-row">
+
+                            <span>
+                                Delivery
+                            </span>
+
+                            <span class="free">
+                                FREE
+                            </span>
+
+                        </div>
+
+
+                        <div class="price-divider"></div>
+
+
+                        <div class="final-total">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong>
+                                ₹{{ "%.2f"|format(total) }}
+                            </strong>
+
+                        </div>
+
+
+                        <button type="submit"
+                                class="payment-button">
+
+                            CONTINUE TO PAYMENT
+
+                        </button>
+
+
+                        <a href="{{ url_for('mycart') }}"
+                           class="back-link">
+
+                            ← BACK TO CART
+
+                        </a>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

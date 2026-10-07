@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        VEZORA | Jewelry & Watches
+        {% endblock %}
+    </title>
+
+    <!-- Base CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/base.css') }}">
+
+    <!-- Page-specific CSS -->
+    {% block css %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+
+            <!-- Logo -->
+
+            {% if session.get("user_id") %}
+
+            <a href="{{ url_for('dashboard') }}"
+               class="logo">
+                VEZORA
+            </a>
+
+            {% else %}
+
+            <a href="{{ url_for('home') }}"
+               class="logo">
+                VEZORA
+            </a>
+
+            {% endif %}
+
+
+            <!-- Navigation -->
+
+            <nav class="nav-links">
+
+
+                {% if session.get("user_id") %}
+
+                <!-- Logged-in user -->
+
+                <a href="{{ url_for('dashboard') }}">
+                    Dashboard
+                </a>
+
+                {% else %}
+
+                <!-- Guest user -->
+
+                <a href="{{ url_for('home') }}">
+                    Home
+                </a>
+
+                {% endif %}
+
+
+                <a href="{{ url_for('products') }}">
+                    Shop
+                </a>
+
+
+                <a href="{{ url_for('categories') }}">
+                    Categories
+                </a>
+
+
+                <a href="{{ url_for('about') }}">
+                    About
+                </a>
+
+
+                <a href="{{ url_for('contact') }}">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <!-- =================================================
+                 RIGHT SIDE ACTIONS
+            ================================================== -->
+
+            <div class="nav-actions">
+
+
+                <!-- Search -->
+
+                <a href="{{ url_for('search') }}"
+                   class="nav-icon"
+                   title="Search">
+                    ⌕
+                </a>
+
+
+                <!-- Favorites -->
+
+                <a href="{{ url_for('myfav') }}"
+                   class="nav-icon"
+                   title="Favorites">
+                    ♡
+                </a>
+
+
+                <!-- Cart -->
+
+                <a href="{{ url_for('mycart') }}"
+                   class="nav-icon"
+                   title="Cart">
+                    🛒
+                </a>
+
+
+                {% if session.get("user_id") %}
+
+                <!-- Logged-in user -->
+
+                <a href="{{ url_for('logout') }}"
+                   class="register-link">
+                    Logout
+                </a>
+
+                {% else %}
+
+                <!-- Guest user -->
+
+                <a href="{{ url_for('login') }}"
+                   class="login-link">
+                    Login
+                </a>
+
+
+                <a href="{{ url_for('register') }}"
+                   class="register-link">
+                    Register
+                </a>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <!-- =================================================
+                 BRAND
+            ================================================== -->
+
+            <div class="footer-brand">
+
+                {% if session.get("user_id") %}
+
+                <a href="{{ url_for('dashboard') }}"
+                   class="footer-logo">
+                    VEZORA
+                </a>
+
+                {% else %}
+
+                <a href="{{ url_for('home') }}"
+                   class="footer-logo">
+                    VEZORA
+                </a>
+
+                {% endif %}
+
+
+                <p>
+                    Timeless jewelry and refined watches
+                    made for every moment.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 SHOP
+            ================================================== -->
+
+            <div class="footer-column">
+
+                <h3>Shop</h3>
+
+
+                <a href="{{ url_for('products') }}">
+                    All Products
+                </a>
+
+
+                <a href="{{ url_for('categories') }}">
+                    Categories
+                </a>
+
+
+                <a href="{{ url_for('offers') }}">
+                    Offers
+                </a>
+
+
+                <a href="{{ url_for('coupons') }}">
+                    Coupons
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 CUSTOMER CARE
+            ================================================== -->
+
+            <div class="footer-column">
+
+                <h3>Customer Care</h3>
+
+
+                <a href="{{ url_for('contact') }}">
+                    Contact Us
+                </a>
+
+
+                <a href="{{ url_for('faq') }}">
+                    FAQ
+                </a>
+
+
+                <a href="{{ url_for('myorders') }}">
+                    My Orders
+                </a>
+
+
+                <a href="{{ url_for('track', order_id=1) }}">
+                    Track Order
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACCOUNT
+            ================================================== -->
+
+            <div class="footer-column">
+
+                <h3>Account</h3>
+
+
+                {% if session.get("user_id") %}
+
+                <!-- Logged-in user -->
+
+
+                <a href="{{ url_for('dashboard') }}">
+                    Dashboard
+                </a>
+
+
+                <a href="{{ url_for('profile') }}">
+                    My Profile
+                </a>
+
+
+                <a href="{{ url_for('myfav') }}">
+                    Favorites
+                </a>
+
+
+                <a href="{{ url_for('mycart') }}">
+                    My Cart
+                </a>
+
+
+                <a href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+
+
+                {% else %}
+
+                <!-- Guest user -->
+
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+
+                <a href="{{ url_for('register') }}">
+                    Create Account
+                </a>
+
+
+                <a href="{{ url_for('myfav') }}">
+                    Favorites
+                </a>
+
+
+                <a href="{{ url_for('mycart') }}">
+                    My Cart
+                </a>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             FOOTER BOTTOM
+        ====================================================== -->
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 VEZORA. All rights reserved.
+            </p>
+
+
+            <p>
+                Jewelry & Watches
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

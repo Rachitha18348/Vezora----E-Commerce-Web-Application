@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}Razorpay Payment | VEZORA{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="payment-page">
+
+    <div class="payment-container">
+
+        <div class="payment-header">
+
+            <span class="payment-label">
+                SECURE CHECKOUT
+            </span>
+
+            <h1>Complete Your Payment</h1>
+
+            <p>
+                Continue to Razorpay to complete your payment securely.
+            </p>
+
+        </div>
+
+        <div class="payment-card">
+
+            <div class="payment-icon">
+                ₹
+            </div>
+
+            <h2>VEZORA</h2>
+
+            <p class="payment-description">
+                Jewelry & Watches
+            </p>
+
+            <div class="payment-total">
+
+                <span>Amount Payable</span>
+
+                <strong>
+                    ₹{{ "%.2f"|format(order_total) }}
+                </strong>
+
+            </div>
+
+            <div class="payment-details">
+
+                <div>
+                    <span>Customer</span>
+
+                    <strong>
+                        {{ user_name }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Payment Method</span>
+
+                    <strong>
+                        {{ payment_method }}
+                    </strong>
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                id="pay-button"
+                class="payment-button"
+            >
+                PROCEED TO PAYMENT
+            </button>
+
+            <p class="secure-note">
+                Secured by Razorpay Test Mode
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+var options = {
+
+    "key": "{{ razorpay_key }}",
+
+    "amount": "{{ amount }}",
+
+    "currency": "INR",
+
+    "name": "VEZORA",
+
+    "description": "VEZORA Order Payment",
+
+    "order_id": "{{ razorpay_order_id }}",
+
+    "handler": function(response) {
+
+        var form = document.createElement("form");
+
+        form.method = "POST";
+
+        form.action = "{{ url_for('payment_success') }}";
+
+
+        var paymentId = document.createElement("input");
+
+        paymentId.type = "hidden";
+
+        paymentId.name = "razorpay_payment_id";
+
+        paymentId.value = response.razorpay_payment_id;
+
+
+        var orderId = document.createElement("input");
+
+        orderId.type = "hidden";
+
+        orderId.name = "razorpay_order_id";
+
+        orderId.value = response.razorpay_order_id;
+
+
+        var signature = document.createElement("input");
+
+        signature.type = "hidden";
+
+        signature.name = "razorpay_signature";
+
+        signature.value = response.razorpay_signature;
+
+
+        form.appendChild(paymentId);
+
+        form.appendChild(orderId);
+
+        form.appendChild(signature);
+
+        document.body.appendChild(form);
+
+        form.submit();
+
+    },
+
+    "modal": {
+
+        "ondismiss": function() {
+
+            window.location.href =
+                "{{ url_for('paymentfailure') }}";
+
+        }
+
+    }
+
+};
+
+
+var razorpay = new Razorpay(options);
+
+
+document.getElementById("pay-button").onclick = function() {
+
+    razorpay.open();
+
+};
+
+</script>
+
+{% endblock %}

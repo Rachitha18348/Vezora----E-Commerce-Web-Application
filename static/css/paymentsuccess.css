@@ -1,0 +1,171 @@
+.success-page {
+    min-height: calc(100vh - 180px);
+    padding: 80px 7%;
+    background: #FAF7F2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-card {
+    width: 100%;
+    max-width: 650px;
+    padding: 55px 50px;
+
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+
+    text-align: center;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #C9A45C;
+    border-radius: 50%;
+
+    color: #C9A45C;
+    font-size: 25px;
+}
+
+.success-eyebrow {
+    margin: 0 0 12px;
+
+    color: #C9A45C;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.success-card h1 {
+    margin: 0 auto 18px;
+
+    max-width: 500px;
+
+    color: #242424;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.success-message {
+    max-width: 480px;
+    margin: 0 auto;
+
+    color: #77716A;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.order-info {
+    margin: 35px 0;
+
+    border-top: 1px solid #E8E0D4;
+    border-bottom: 1px solid #E8E0D4;
+}
+
+.order-info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 15px 5px;
+
+    color: #77716A;
+    font-size: 12px;
+
+    border-bottom: 1px solid #F0EBE3;
+}
+
+.order-info-row:last-child {
+    border-bottom: none;
+}
+
+.order-info-row strong {
+    color: #242424;
+    font-weight: 600;
+    text-align: right;
+}
+
+.success-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.primary-button,
+.secondary-button {
+    display: block;
+    padding: 14px 24px;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.primary-button {
+    background: #C9A45C;
+    border: 1px solid #C9A45C;
+    color: #FFFFFF;
+}
+
+.primary-button:hover {
+    background: #B8914F;
+    border-color: #B8914F;
+}
+
+.secondary-button {
+    background: #FFFFFF;
+    border: 1px solid #C9A45C;
+    color: #242424;
+}
+
+.secondary-button:hover {
+    background: #C9A45C;
+    color: #FFFFFF;
+}
+
+.success-note {
+    margin: 30px 0 0;
+
+    color: #999188;
+    font-size: 10px;
+}
+
+
+@media (max-width: 600px) {
+
+    .success-page {
+        padding: 50px 5%;
+    }
+
+    .success-card {
+        padding: 40px 25px;
+    }
+
+    .success-card h1 {
+        font-size: 27px;
+    }
+
+    .success-actions {
+        flex-direction: column;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}

@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ category_name }} | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/category.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="category-page">
+
+    <div class="category-container">
+
+        <div class="category-header">
+
+            <div>
+
+                <span class="section-label">
+                    VEZORA COLLECTION
+                </span>
+
+                <h1>
+                    {{ category_name }}
+                </h1>
+
+                <p>
+                    Explore our carefully selected
+                    {{ category_name|lower }} collection.
+                </p>
+
+            </div>
+
+            <a href="{{ url_for('categories') }}" class="back-category">
+                ← ALL CATEGORIES
+            </a>
+
+        </div>
+
+        <div class="category-toolbar">
+
+            <span>
+                {% if products %}
+                {{ products|length }} Products
+                {% else %}
+                0 Products
+                {% endif %}
+            </span>
+
+            <a href="{{ url_for('products') }}">
+                VIEW ALL PRODUCTS →
+            </a>
+
+        </div>
+
+        {% if products %}
+
+        <div class="category-grid">
+
+            {% for product in products %}
+
+            <article class="category-product-card">
+
+                <div class="category-product-image">
+
+                    {% if product.image %}
+
+                    <img src="{{ product.image }}" alt="{{ product.name }}">
+
+                    {% else %}
+
+                    <div class="category-product-placeholder">
+                        <span>VEZORA</span>
+                    </div>
+
+                    {% endif %}
+
+                    <a href="{% if product.is_favorite %}
+                                  {{ url_for('removefromfav', product_id=product.id) }}
+                              {% else %}
+                                  {{ url_for('addtofav', product_id=product.id) }}
+                              {% endif %}" class="category-favorite">
+
+                        {% if product.is_favorite %}
+                        ♥
+                        {% else %}
+                        ♡
+                        {% endif %}
+
+                    </a>
+
+                </div>
+
+                <div class="category-product-info">
+
+                    <span class="category-product-type">
+                        {{ product.category }}
+                    </span>
+
+                    <h2>
+                        <a href="{{ url_for('productdetails',
+                                            product_id=product.id) }}">
+                            {{ product.name }}
+                        </a>
+                    </h2>
+
+                    {% if product.description %}
+
+                    <p>
+                        {{ product.description }}
+                    </p>
+
+                    {% endif %}
+
+                    <div class="category-product-meta">
+
+                        <strong>
+                            ₹{{ "%.2f"|format(product.price) }}
+                        </strong>
+
+                        {% if product.rating and product.rating > 0 %}
+
+                        <span>
+                            ★ {{ "%.1f"|format(product.rating) }}
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <a href="{{ url_for('addtocart',
+                                         product_id=product.id) }}" class="category-cart-button">
+                        ADD TO CART
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="category-empty">
+
+            <span>◇</span>
+
+            <h2>
+                No {{ category_name }} available
+            </h2>
+
+            <p>
+                We're preparing new pieces for this collection.
+            </p>
+
+            <a href="{{ url_for('products') }}">
+                EXPLORE ALL PRODUCTS
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

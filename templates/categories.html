@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}
+Categories | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/categories.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="categories-page">
+
+    <div class="categories-container">
+
+        <div class="categories-header">
+
+            <span class="section-label">
+                EXPLORE VEZORA
+            </span>
+
+            <h1>
+                Shop by Category
+            </h1>
+
+            <p>
+                Discover jewelry and watches selected to complement
+                every style, occasion, and moment.
+            </p>
+
+        </div>
+
+        <div class="categories-grid">
+
+            <a href="{{ url_for('category', category_name='Necklaces') }}"
+               class="category-card">
+
+                <div class="category-visual">
+                    <span>01</span>
+                    <strong>◇</strong>
+                </div>
+
+                <div class="category-content">
+                    <span>JEWELRY</span>
+                    <h2>Necklaces</h2>
+                    <p>
+                        Delicate and refined pieces for every neckline.
+                    </p>
+                    <span class="category-link">
+                        EXPLORE →
+                    </span>
+                </div>
+
+            </a>
+
+            <a href="{{ url_for('category', category_name='Rings') }}"
+               class="category-card">
+
+                <div class="category-visual">
+                    <span>02</span>
+                    <strong>○</strong>
+                </div>
+
+                <div class="category-content">
+                    <span>JEWELRY</span>
+                    <h2>Rings</h2>
+                    <p>
+                        Elegant designs made to become everyday favorites.
+                    </p>
+                    <span class="category-link">
+                        EXPLORE →
+                    </span>
+                </div>
+
+            </a>
+
+            <a href="{{ url_for('category', category_name='Earrings') }}"
+               class="category-card">
+
+                <div class="category-visual">
+                    <span>03</span>
+                    <strong>◇</strong>
+                </div>
+
+                <div class="category-content">
+                    <span>JEWELRY</span>
+                    <h2>Earrings</h2>
+                    <p>
+                        Subtle details that bring your look together.
+                    </p>
+                    <span class="category-link">
+                        EXPLORE →
+                    </span>
+                </div>
+
+            </a>
+
+            <a href="{{ url_for('category', category_name='Watches') }}"
+               class="category-card">
+
+                <div class="category-visual">
+                    <span>04</span>
+                    <strong>◷</strong>
+                </div>
+
+                <div class="category-content">
+                    <span>TIMEPIECES</span>
+                    <h2>Watches</h2>
+                    <p>
+                        Timeless watches designed for modern moments.
+                    </p>
+                    <span class="category-link">
+                        EXPLORE →
+                    </span>
+                </div>
+
+            </a>
+
+        </div>
+
+        <section class="categories-story">
+
+            <div>
+
+                <span class="section-label">
+                    THE VEZORA EDIT
+                </span>
+
+                <h2>
+                    Find something that feels like you.
+                </h2>
+
+                <p>
+                    From understated everyday pieces to designs made
+                    for special occasions, explore the VEZORA collection
+                    and find your signature style.
+                </p>
+
+                <a href="{{ url_for('products') }}"
+                   class="categories-button">
+                    VIEW ALL PRODUCTS
+                </a>
+
+            </div>
+
+            <div class="story-mark">
+                <span>VEZORA</span>
+                <strong>◇</strong>
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+{% endblock %}

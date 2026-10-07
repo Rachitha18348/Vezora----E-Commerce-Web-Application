@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Address | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/address.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="address-page">
+
+    <div class="add-address-container">
+
+        <div class="add-address-header">
+
+            <a href="{{ url_for('address') }}"
+               class="back-link">
+
+                ← BACK TO ADDRESSES
+
+            </a>
+
+            <span class="section-label">
+                DELIVERY DETAILS
+            </span>
+
+            <h1>
+                Add New Address
+            </h1>
+
+            <p>
+                Enter the details where you'd like your order delivered.
+            </p>
+
+        </div>
+
+
+        <form method="POST"
+              class="address-form">
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="full_name">
+                        FULL NAME
+                    </label>
+
+                    <input type="text"
+                           id="full_name"
+                           name="full_name"
+                           placeholder="Enter full name"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        PHONE NUMBER
+                    </label>
+
+                    <input type="tel"
+                           id="phone"
+                           name="phone"
+                           placeholder="Enter phone number"
+                           pattern="[0-9]{10}"
+                           maxlength="10"
+                           required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="address_line">
+                    ADDRESS
+                </label>
+
+                <textarea id="address_line"
+                          name="address_line"
+                          rows="4"
+                          placeholder="House / Flat / Street / Area"
+                          required></textarea>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="city">
+                        CITY
+                    </label>
+
+                    <input type="text"
+                           id="city"
+                           name="city"
+                           placeholder="Enter city"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="state">
+                        STATE
+                    </label>
+
+                    <input type="text"
+                           id="state"
+                           name="state"
+                           placeholder="Enter state"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="pincode">
+                        PINCODE
+                    </label>
+
+                    <input type="text"
+                           id="pincode"
+                           name="pincode"
+                           placeholder="Enter pincode"
+                           pattern="[0-9]{6}"
+                           maxlength="6"
+                           required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="address_type">
+                    ADDRESS TYPE
+                </label>
+
+                <select id="address_type"
+                        name="address_type">
+
+                    <option value="Home">
+                        Home
+                    </option>
+
+                    <option value="Work">
+                        Work
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <label class="default-checkbox">
+
+                <input type="checkbox"
+                       name="is_default">
+
+                <span>
+                    Make this my default address
+                </span>
+
+            </label>
+
+
+            <button type="submit"
+                    class="save-address-button">
+
+                SAVE ADDRESS
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

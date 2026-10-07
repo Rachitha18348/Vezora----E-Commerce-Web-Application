@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+
+{% block title %}Order Details | VEZORA{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/orderdetails.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="order-details-page">
+
+    <div class="order-details-header">
+
+        <a
+            href="{{ url_for('myorders') }}"
+            class="back-link"
+        >
+            ← BACK TO MY ORDERS
+        </a>
+
+        <p class="details-eyebrow">
+            VEZORA ORDER
+        </p>
+
+        <h1>Order #{{ order.id }}</h1>
+
+        <p>
+            Placed on {{ order.created_at.strftime("%d %B %Y") }}
+        </p>
+
+    </div>
+
+
+    <div class="details-container">
+
+        <!-- ORDER STATUS -->
+
+        <div class="status-card">
+
+            <div>
+
+                <span class="details-label">
+                    ORDER STATUS
+                </span>
+
+                <h2>
+                    {{ order.status }}
+                </h2>
+
+            </div>
+
+            <div class="status-actions">
+
+                <a
+                    href="{{ url_for('track', order_id=order.id) }}"
+                    class="primary-button"
+                >
+                    TRACK ORDER
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div class="details-section">
+
+            <div class="section-heading">
+
+                <p>ORDER ITEMS</p>
+
+                <h2>Your Purchase</h2>
+
+            </div>
+
+
+            <div class="order-items">
+
+                {% for item in order_items %}
+
+                    <div class="order-item">
+
+                        <div class="order-item-image">
+
+                            <img
+                                src="{{ item.image }}"
+                                alt="{{ item.name }}"
+                            >
+
+                        </div>
+
+
+                        <div class="order-item-info">
+
+                            <p class="item-category">
+                                {{ item.category }}
+                            </p>
+
+                            <h3>
+                                {{ item.name }}
+                            </h3>
+
+                            <p class="item-quantity">
+                                Quantity: {{ item.quantity }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="order-item-price">
+
+                            <span>
+                                ₹{{ "%.2f"|format(item.price) }} each
+                            </span>
+
+                            <strong>
+                                ₹{{ "%.2f"|format(item.item_total) }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- TWO COLUMN INFORMATION -->
+
+        <div class="details-grid">
+
+
+            <!-- DELIVERY ADDRESS -->
+
+            <div class="details-section">
+
+                <div class="section-heading">
+
+                    <p>DELIVERY ADDRESS</p>
+
+                    <h2>Shipping Details</h2>
+
+                </div>
+
+
+                {% if address %}
+
+                    <div class="address-box">
+
+                        <strong>
+                            {{ address.full_name }}
+                        </strong>
+
+                        <p>
+                            {{ address.address_line }}
+                        </p>
+
+                        <p>
+                            {{ address.city }},
+                            {{ address.state }}
+                            - {{ address.pincode }}
+                        </p>
+
+                        <p>
+                            Phone: {{ address.phone }}
+                        </p>
+
+                        <span class="address-type">
+                            {{ address.address_type }}
+                        </span>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- PAYMENT -->
+
+            <div class="details-section">
+
+                <div class="section-heading">
+
+                    <p>PAYMENT INFORMATION</p>
+
+                    <h2>Payment Details</h2>
+
+                </div>
+
+
+                <div class="payment-details">
+
+                    <div class="payment-row">
+
+                        <span>Method</span>
+
+                        <strong>
+                            {{ order.payment_method or "Not Available" }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="payment-row">
+
+                        <span>Status</span>
+
+                        <strong class="payment-status {{ order.payment_status|lower }}">
+                            {{ order.payment_status }}
+                        </strong>
+
+                    </div>
+
+
+                    {% if order.transaction_id %}
+
+                        <div class="payment-row">
+
+                            <span>Transaction ID</span>
+
+                            <strong class="transaction-id">
+                                {{ order.transaction_id }}
+                            </strong>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRICE SUMMARY -->
+
+        <div class="details-section price-section">
+
+            <div class="section-heading">
+
+                <p>ORDER SUMMARY</p>
+
+                <h2>Price Details</h2>
+
+            </div>
+
+
+            <div class="price-summary">
+
+                <div class="price-row">
+
+                    <span>Items Total</span>
+
+                    <span>
+                        ₹{{ "%.2f"|format(order.total_amount) }}
+                    </span>
+
+                </div>
+
+
+                <div class="price-row">
+
+                    <span>Delivery</span>
+
+                    <span class="free-text">
+                        FREE
+                    </span>
+
+                </div>
+
+
+                <div class="price-divider"></div>
+
+
+                <div class="price-total">
+
+                    <span>Total</span>
+
+                    <strong>
+                        ₹{{ "%.2f"|format(order.total_amount) }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="bottom-actions">
+
+            <a
+                href="{{ url_for('track', order_id=order.id) }}"
+                class="primary-button"
+            >
+                TRACK ORDER
+            </a>
+
+            <a
+                href="{{ url_for('products') }}"
+                class="secondary-button"
+            >
+                CONTINUE SHOPPING
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

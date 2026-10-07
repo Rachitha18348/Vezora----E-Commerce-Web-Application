@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create Account | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-container">
+
+        <div class="auth-intro">
+
+            <span class="auth-label">
+                JOIN VEZORA
+            </span>
+
+            <h1>
+                Create your
+                <em>VEZORA account.</em>
+            </h1>
+
+            <p>
+                Create an account to save your favorites,
+                manage orders, and enjoy a seamless shopping
+                experience.
+            </p>
+
+            <div class="auth-decoration">
+                <span>V</span>
+            </div>
+
+        </div>
+
+
+        <div class="auth-card">
+
+            <div class="auth-heading">
+
+                <span class="section-label">
+                    GET STARTED
+                </span>
+
+                <h2>Create Account</h2>
+
+                <p>
+                    Enter your details to create your account.
+                </p>
+
+            </div>
+
+
+            <form method="POST">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirm_password">
+                        Confirm Password
+                    </label>
+
+                    <input type="password" id="confirm_password" name="confirm_password"
+                        placeholder="Confirm your password" required>
+
+                </div>
+
+
+                <label class="terms">
+
+                    <input type="checkbox" name="terms" required>
+
+                    <span>
+                        I agree to the terms and conditions.
+                    </span>
+
+                </label>
+
+
+                <button type="submit" class="auth-button">
+                    CREATE ACCOUNT
+                </button>
+
+                {% if error %}
+                <div class="form-error">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+            </form>
+
+
+            <div class="auth-divider">
+                <span>OR</span>
+            </div>
+
+
+            <p class="auth-bottom">
+
+                Already have an account?
+
+                <a href="{{ url_for('login') }}">
+                    Sign In
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

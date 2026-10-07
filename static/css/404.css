@@ -1,0 +1,119 @@
+.error-page {
+min-height: 75vh;
+background: #FAF7F2;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 70px 5%;
+}
+
+/* CARD */
+
+.error-card {
+width: 100%;
+max-width: 650px;
+background: #FFFFFF;
+border: 1px solid #E8E0D4;
+border-radius: 12px;
+padding: 65px 40px;
+text-align: center;
+}
+
+/* TEXT */
+
+.error-eyebrow {
+color: #C9A45C;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 3px;
+margin-bottom: 10px;
+}
+
+.error-number {
+color: #242424;
+font-size: 90px;
+line-height: 1;
+font-weight: 700;
+letter-spacing: 4px;
+margin-bottom: 20px;
+}
+
+.error-card h1 {
+color: #242424;
+font-size: 30px;
+margin-bottom: 12px;
+}
+
+.error-card > p:not(.error-eyebrow) {
+max-width: 480px;
+margin: 0 auto;
+color: #6B6B6B;
+font-size: 14px;
+line-height: 1.7;
+}
+
+/* BUTTONS */
+
+.error-actions {
+display: flex;
+justify-content: center;
+gap: 12px;
+margin-top: 30px;
+}
+
+.primary-button,
+.secondary-button {
+display: inline-block;
+padding: 13px 22px;
+border-radius: 6px;
+text-decoration: none;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 1px;
+}
+
+.primary-button {
+background: #C9A45C;
+color: #FFFFFF;
+}
+
+.primary-button:hover {
+background: #B8914F;
+}
+
+.secondary-button {
+border: 1px solid #C9A45C;
+color: #B8914F;
+background: #FFFFFF;
+}
+
+.secondary-button:hover {
+background: #C9A45C;
+color: #FFFFFF;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 550px) {
+
+
+.error-card {
+    padding: 50px 25px;
+}
+
+.error-number {
+    font-size: 65px;
+}
+
+.error-actions {
+    flex-direction: column;
+}
+
+.primary-button,
+.secondary-button {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+}

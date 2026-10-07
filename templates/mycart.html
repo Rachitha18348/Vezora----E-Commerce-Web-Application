@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Cart | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/mycart.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="cart-page">
+
+    <div class="cart-container">
+
+        <div class="cart-header">
+
+            <span class="section-label">
+                YOUR VEZORA BAG
+            </span>
+
+            <h1>
+                My Cart
+            </h1>
+
+            <p>
+                Review your selected pieces before checkout.
+            </p>
+
+        </div>
+
+
+        {% if cart_items %}
+
+        <div class="cart-layout">
+
+            <!-- CART ITEMS -->
+
+            <div class="cart-items">
+
+                {% for item in cart_items %}
+
+                <article class="cart-item">
+
+                    <div class="cart-item-image">
+
+                        {% if item.image %}
+
+                        <img src="{{ item.image }}"
+                             alt="{{ item.name }}">
+
+                        {% else %}
+
+                        <div class="cart-placeholder">
+                            VEZORA
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="cart-item-details">
+
+                        <span class="cart-item-category">
+                            {{ item.category }}
+                        </span>
+
+                        <h2>
+                            <a href="{{ url_for('productdetails',
+                                                product_id=item.product_id) }}">
+
+                                {{ item.name }}
+
+                            </a>
+                        </h2>
+
+
+                        <p class="cart-item-price">
+                            ₹{{ "%.2f"|format(item.price) }}
+                        </p>
+
+
+                        <div class="cart-item-bottom">
+
+                            <div class="quantity-control">
+
+                                <a href="{{ url_for('updatecart',
+                                                    product_id=item.product_id,
+                                                    action='decrease') }}"
+                                   class="quantity-button">
+
+                                    −
+
+                                </a>
+
+
+                                <span class="quantity-value">
+                                    {{ item.quantity }}
+                                </span>
+
+
+                                <a href="{{ url_for('updatecart',
+                                                    product_id=item.product_id,
+                                                    action='increase') }}"
+                                   class="quantity-button">
+
+                                    +
+
+                                </a>
+
+                            </div>
+
+
+                            <span class="cart-item-total">
+                                ₹{{ "%.2f"|format(item.item_total) }}
+                            </span>
+
+                        </div>
+
+
+                        <a href="{{ url_for('removefromcart',
+                                            product_id=item.product_id) }}"
+                           class="remove-cart-item">
+
+                            REMOVE
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- ORDER SUMMARY -->
+
+            <aside class="cart-summary">
+
+                <div class="summary-box">
+
+                    <span class="summary-label">
+                        ORDER SUMMARY
+                    </span>
+
+                    <h2>
+                        Your Order
+                    </h2>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span>
+                            ₹{{ "%.2f"|format(subtotal) }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Delivery
+                        </span>
+
+                        <span class="free-delivery">
+                            FREE
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong>
+                            ₹{{ "%.2f"|format(total) }}
+                        </strong>
+
+                    </div>
+
+
+                    <a href="{{ url_for('checkout') }}"
+                       class="checkout-button">
+
+                        PROCEED TO CHECKOUT
+
+                    </a>
+
+
+                    <a href="{{ url_for('products') }}"
+                       class="continue-shopping">
+
+                        CONTINUE SHOPPING
+
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <div class="cart-note">
+
+            <span>◇</span>
+
+            <p>
+                Every VEZORA piece is selected to bring
+                timeless elegance to your collection.
+            </p>
+
+        </div>
+
+
+        {% else %}
+
+        <!-- EMPTY CART -->
+
+        <div class="cart-empty">
+
+            <div class="empty-cart-icon">
+                ♡
+            </div>
+
+            <span class="section-label">
+                YOUR CART
+            </span>
+
+            <h2>
+                Your cart is empty.
+            </h2>
+
+            <p>
+                Discover something beautiful and add it
+                to your collection.
+            </p>
+
+            <a href="{{ url_for('products') }}"
+               class="browse-button">
+
+                EXPLORE THE COLLECTION
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Order Confirmed | VEZORA{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/paymentsuccess.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="success-page">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <p class="success-eyebrow">
+            ORDER CONFIRMED
+        </p>
+
+        <h1>Thank You for Shopping with VEZORA</h1>
+
+        <p class="success-message">
+            Your order has been placed successfully.
+            We will carefully prepare your pieces for delivery.
+        </p>
+
+        <div class="order-info">
+
+            <div class="order-info-row">
+                <span>Order ID</span>
+                <strong>#{{ order_id }}</strong>
+            </div>
+
+            <div class="order-info-row">
+                <span>Total Amount</span>
+                <strong>₹{{ "%.2f"|format(order_total) }}</strong>
+            </div>
+
+            <div class="order-info-row">
+                <span>Payment</span>
+                <strong>{{ payment_method }}</strong>
+            </div>
+
+            <div class="order-info-row">
+                <span>Status</span>
+                <strong>Placed</strong>
+            </div>
+
+        </div>
+
+        <div class="success-actions">
+
+            <a href="{{ url_for('myorders') }}" class="primary-button">
+                VIEW MY ORDERS
+            </a>
+
+            <a href="{{ url_for('products') }}" class="secondary-button">
+                CONTINUE SHOPPING
+            </a>
+
+        </div>
+
+        <p class="success-note">
+            Thank you for choosing VEZORA.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

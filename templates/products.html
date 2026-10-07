@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block title %}
+Shop | VEZORA
+{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}"> {% endblock %}
+
+{% block content %}
+
+<section class="products-page">
+
+<div class="products-container">
+
+    <div class="products-header">
+
+        <div>
+
+            <span class="section-label">
+                THE VEZORA COLLECTION
+            </span>
+
+            <h1>
+                Shop Jewelry & Watches
+            </h1>
+
+            <p>
+                Explore timeless pieces designed to add
+                something special to every moment.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="products-toolbar">
+
+        <div class="product-count">
+
+            {% if products %}
+                {{ products|length }} Products
+            {% else %}
+                0 Products
+            {% endif %}
+
+        </div>
+
+
+        <div class="product-filter">
+
+            <label for="category">
+                CATEGORY
+            </label>
+
+            <select id="category"
+                    onchange="filterProducts()">
+
+                <option value="all">
+                    All
+                </option>
+
+                <option value="Necklaces">
+                    Necklaces
+                </option>
+
+                <option value="Rings">
+                    Rings
+                </option>
+
+                <option value="Earrings">
+                    Earrings
+                </option>
+
+                <option value="Watches">
+                    Watches
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    {% if products %}
+
+    <div class="products-grid"
+         id="productsGrid">
+
+        {% for product in products %}
+
+        <article class="shop-product-card"
+                 data-category="{{ product.category }}">
+
+            <div class="shop-product-image">
+
+                {% if product.image %}
+
+                <img src="{{ product.image }}"
+                     alt="{{ product.name }}">
+
+                {% else %}
+
+                <div class="shop-product-placeholder">
+
+                    <span>
+                        VEZORA
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                <a href="{% if product.is_favorite %}
+                            {{ url_for('removefromfav', product_id=product.id) }}
+                         {% else %}
+                            {{ url_for('addtofav', product_id=product.id) }}
+                         {% endif %}"
+                   class="shop-favorite"
+                   title="{% if product.is_favorite %}
+                              Remove from Favorites
+                          {% else %}
+                              Add to Favorites
+                          {% endif %}">
+
+                    {% if product.is_favorite %}
+                        ♥
+                    {% else %}
+                        ♡
+                    {% endif %}
+
+                </a>
+
+            </div>
+
+
+            <div class="shop-product-info">
+
+                <span class="shop-product-category">
+                    {{ product.category }}
+                </span>
+
+
+                <h2>
+
+                    <a href="{{ url_for('productdetails',
+                                        product_id=product.id) }}">
+
+                        {{ product.name }}
+
+                    </a>
+
+                </h2>
+
+
+                {% if product.description %}
+
+                <p class="shop-product-description">
+                    {{ product.description }}
+                </p>
+
+                {% endif %}
+
+
+                <div class="shop-product-meta">
+
+                    <span class="shop-product-price">
+                        ₹{{ "%.2f"|format(product.price) }}
+                    </span>
+
+
+                    {% if product.rating and product.rating > 0 %}
+
+                    <span class="shop-product-rating">
+                        ★ {{ "%.1f"|format(product.rating) }}
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="shop-product-actions">
+
+                    <a href="{{ url_for('productdetails',
+                                        product_id=product.id) }}"
+                       class="view-product-button">
+
+                        VIEW PRODUCT
+
+                    </a>
+
+                    <a href="{{ url_for('addtocart',
+                                        product_id=product.id) }}"
+                       class="shop-cart-button">
+
+                        ADD TO CART
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+    <div class="products-empty">
+
+        <span class="empty-symbol">
+            ◇
+        </span>
+
+        <h2>
+            Our collection is coming soon.
+        </h2>
+
+        <p>
+            We're preparing something beautiful for you.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</section>
+{% endblock %}

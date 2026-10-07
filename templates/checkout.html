@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block title %}
+Checkout | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/checkout.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="checkout-page">
+
+    <div class="checkout-container">
+
+        <div class="checkout-header">
+
+            <span class="section-label">
+                SECURE CHECKOUT
+            </span>
+
+            <h1>
+                Checkout
+            </h1>
+
+            <p>
+                Choose where you'd like your VEZORA order delivered.
+            </p>
+
+        </div>
+
+
+        {% if error %}
+
+        <div class="checkout-error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            <div class="checkout-layout">
+
+                <!-- DELIVERY ADDRESS -->
+
+                <div class="checkout-main">
+
+                    <div class="checkout-section">
+
+                        <div class="section-heading">
+
+                            <span class="step-number">
+                                01
+                            </span>
+
+                            <div>
+                                <span class="section-label">
+                                    DELIVERY
+                                </span>
+
+                                <h2>
+                                    Delivery Address
+                                </h2>
+                            </div>
+
+                        </div>
+
+
+                        {% if addresses %}
+
+                        <div class="checkout-addresses">
+
+                            {% for address in addresses %}
+
+                            <label class="checkout-address-card">
+
+                                <input type="radio"
+                                       name="address_id"
+                                       value="{{ address.id }}"
+                                       {% if address.is_default %}
+                                       checked
+                                       {% endif %}>
+
+                                <div class="address-radio"></div>
+
+
+                                <div class="checkout-address-content">
+
+                                    <div class="checkout-address-top">
+
+                                        <strong>
+                                            {{ address.full_name }}
+                                        </strong>
+
+                                        <span>
+                                            {{ address.address_type }}
+                                        </span>
+
+                                    </div>
+
+
+                                    <p>
+                                        {{ address.address_line }}
+                                    </p>
+
+                                    <p>
+                                        {{ address.city }},
+                                        {{ address.state }}
+                                        - {{ address.pincode }}
+                                    </p>
+
+                                    <p class="checkout-phone">
+                                        {{ address.phone }}
+                                    </p>
+
+
+                                    {% if address.is_default %}
+
+                                    <span class="default-badge">
+                                        DEFAULT
+                                    </span>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </label>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        {% else %}
+
+                        <div class="no-address">
+
+                            <div class="no-address-symbol">
+                                ◇
+                            </div>
+
+                            <h3>
+                                No delivery address found.
+                            </h3>
+
+                            <p>
+                                Add an address before continuing
+                                with your order.
+                            </p>
+
+                            <a href="{{ url_for('addaddress') }}">
+                                ADD NEW ADDRESS
+                            </a>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        {% if addresses %}
+
+                        <a href="{{ url_for('addaddress') }}"
+                           class="add-address-link">
+
+                            + ADD NEW ADDRESS
+
+                        </a>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ORDER ITEMS -->
+
+                    <div class="checkout-section">
+
+                        <div class="section-heading">
+
+                            <span class="step-number">
+                                02
+                            </span>
+
+                            <div>
+                                <span class="section-label">
+                                    YOUR ORDER
+                                </span>
+
+                                <h2>
+                                    Order Items
+                                </h2>
+                            </div>
+
+                        </div>
+
+
+                        <div class="checkout-items">
+
+                            {% for item in cart_items %}
+
+                            <div class="checkout-item">
+
+                                <div class="checkout-item-image">
+
+                                    {% if item.image %}
+
+                                    <img src="{{ item.image }}"
+                                         alt="{{ item.name }}">
+
+                                    {% else %}
+
+                                    <span>
+                                        VEZORA
+                                    </span>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="checkout-item-details">
+
+                                    <h3>
+                                        {{ item.name }}
+                                    </h3>
+
+                                    <p>
+                                        Quantity: {{ item.quantity }}
+                                    </p>
+
+                                </div>
+
+
+                                <strong>
+                                    ₹{{ "%.2f"|format(item.item_total) }}
+                                </strong>
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUMMARY -->
+
+                <aside class="checkout-summary">
+
+                    <div class="summary-box">
+
+                        <span class="summary-label">
+                            ORDER SUMMARY
+                        </span>
+
+                        <h2>
+                            Your Order
+                        </h2>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Items
+                            </span>
+
+                            <span>
+                                {{ cart_items|length }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+                            <span>
+                                ₹{{ "%.2f"|format(subtotal) }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Delivery
+                            </span>
+
+                            <span class="free">
+                                FREE
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-divider"></div>
+
+
+                        <div class="summary-total">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong>
+                                ₹{{ "%.2f"|format(total) }}
+                            </strong>
+
+                        </div>
+
+
+                        {% if addresses %}
+
+                        <button type="submit"
+                                class="continue-button">
+
+                            CONTINUE TO ORDER SUMMARY
+
+                        </button>
+
+                        {% else %}
+
+                        <a href="{{ url_for('addaddress') }}"
+                           class="continue-button">
+
+                            ADD DELIVERY ADDRESS
+
+                        </a>
+
+                        {% endif %}
+
+
+                        <a href="{{ url_for('mycart') }}"
+                           class="back-cart">
+
+                            ← BACK TO CART
+
+                        </a>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

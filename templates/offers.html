@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Offers | VEZORA{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/offers.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="offers-page">
+
+
+<div class="offers-header">
+
+    <p class="offers-eyebrow">
+        VEZORA EXCLUSIVES
+    </p>
+
+    <h1>Offers & Benefits</h1>
+
+    <p>
+        Discover special savings and benefits available
+        across your VEZORA shopping experience.
+    </p>
+
+</div>
+
+
+<div class="offers-grid">
+
+
+    <div class="offer-card">
+
+        <div class="offer-icon">
+            01
+        </div>
+
+        <span class="offer-label">
+            NEW CUSTOMERS
+        </span>
+
+        <h2>Welcome Offer</h2>
+
+        <p>
+            Enjoy a special welcome benefit when you make
+            your first purchase with VEZORA.
+        </p>
+
+        <a href="{{ url_for('products') }}">
+            SHOP NOW →
+        </a>
+
+    </div>
+
+
+    <div class="offer-card">
+
+        <div class="offer-icon">
+            02
+        </div>
+
+        <span class="offer-label">
+            JEWELRY COLLECTION
+        </span>
+
+        <h2>Exclusive Styles</h2>
+
+        <p>
+            Explore elegant necklaces, rings, earrings,
+            and watches selected for the VEZORA collection.
+        </p>
+
+        <a href="{{ url_for('products') }}">
+            EXPLORE COLLECTION →
+        </a>
+
+    </div>
+
+
+    <div class="offer-card">
+
+        <div class="offer-icon">
+            03
+        </div>
+
+        <span class="offer-label">
+            SHOPPING BENEFIT
+        </span>
+
+        <h2>Free Delivery</h2>
+
+        <p>
+            Enjoy complimentary delivery on your VEZORA
+            orders.
+        </p>
+
+        <a href="{{ url_for('products') }}">
+            START SHOPPING →
+        </a>
+
+    </div>
+
+
+</div>
+
+
+</section>
+
+{% endblock %}

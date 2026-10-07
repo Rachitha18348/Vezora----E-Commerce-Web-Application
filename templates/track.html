@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Track Order | VEZORA{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/track.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="track-page">
+
+    <div class="track-header">
+
+        <p class="track-eyebrow">
+            VEZORA DELIVERY
+        </p>
+
+        <h1>Track Your Order</h1>
+
+        <p>
+            Follow your order as it makes its way to you.
+        </p>
+
+    </div>
+
+
+    <div class="track-container">
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="track-order-card">
+
+            <div class="track-order-top">
+
+                <div>
+                    <p class="order-label">ORDER</p>
+
+                    <h2>
+                        #{{ order.id }}
+                    </h2>
+                </div>
+
+                <div class="track-order-date">
+
+                    <span>Placed on</span>
+
+                    <strong>
+                        {{ order.created_at.strftime("%d %b %Y") }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="track-order-details">
+
+                <div>
+                    <span>Total</span>
+                    <strong>
+                        ₹{{ "%.2f"|format(order.total_amount) }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Payment</span>
+                    <strong>
+                        {{ order.payment_method or "Not Available" }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Payment Status</span>
+                    <strong class="payment-status {{ order.payment_status|lower }}">
+                        {{ order.payment_status }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Current Status</span>
+                    <strong>
+                        {{ order.status }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRACKING -->
+
+        <div class="tracking-card">
+
+            <div class="tracking-heading">
+
+                <p class="tracking-label">
+                    ORDER JOURNEY
+                </p>
+
+                <h2>
+                    Delivery Status
+                </h2>
+
+            </div>
+
+
+            {% if order.status == "Cancelled" %}
+
+                <div class="cancelled-box">
+
+                    <div class="cancelled-icon">
+                        ×
+                    </div>
+
+                    <div>
+                        <h3>Order Cancelled</h3>
+
+                        <p>
+                            This order has been cancelled and will not
+                            proceed for delivery.
+                        </p>
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <div class="tracking-timeline">
+
+                    {% for status in status_order %}
+
+                        {% set status_index = loop.index0 %}
+
+                        <div class="
+                            timeline-item
+                            {% if status_index < current_index %}
+                                completed
+                            {% elif status_index == current_index %}
+                                active
+                            {% endif %}
+                        ">
+
+                            <div class="timeline-marker">
+
+                                {% if status_index < current_index %}
+                                    ✓
+                                {% elif status_index == current_index %}
+                                    •
+                                {% else %}
+                                    {{ loop.index }}
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="timeline-content">
+
+                                <h3>
+                                    {{ status }}
+                                </h3>
+
+                                {% if status == "Placed" %}
+
+                                    <p>
+                                        Your order has been placed successfully.
+                                    </p>
+
+                                {% elif status == "Confirmed" %}
+
+                                    <p>
+                                        Your order has been confirmed and is
+                                        being prepared.
+                                    </p>
+
+                                {% elif status == "Shipped" %}
+
+                                    <p>
+                                        Your VEZORA package has been shipped.
+                                    </p>
+
+                                {% elif status == "Out for Delivery" %}
+
+                                    <p>
+                                        Your package is on its way to you.
+                                    </p>
+
+                                {% elif status == "Delivered" %}
+
+                                    <p>
+                                        Your order has been delivered.
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="track-actions">
+
+            <a
+                href="{{ url_for('myorders') }}"
+                class="secondary-button"
+            >
+                ← MY ORDERS
+            </a>
+
+            <a
+                href="{{ url_for('products') }}"
+                class="primary-button"
+            >
+                CONTINUE SHOPPING
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

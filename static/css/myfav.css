@@ -1,0 +1,387 @@
+.favorites-page {
+    min-height: calc(100vh - 160px);
+    background: #FAF7F2;
+    padding: 70px 0 90px;
+}
+
+.favorites-container {
+    width: 90%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+
+/* HEADER */
+
+.favorites-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #B8914F;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.favorites-header h1 {
+    margin: 0 0 15px;
+    color: #242424;
+    font-size: 42px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.favorites-header p {
+    margin: 0;
+    color: #77716A;
+    font-size: 14px;
+}
+
+
+/* COUNT */
+
+.favorites-count {
+    margin-bottom: 22px;
+    color: #6B6B6B;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+/* GRID */
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+
+/* CARD */
+
+.favorite-card {
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.favorite-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(80, 60, 30, 0.08);
+}
+
+
+/* IMAGE */
+
+.favorite-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    background: #F4EFE8;
+}
+
+.favorite-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.favorite-card:hover .favorite-image img {
+    transform: scale(1.04);
+}
+
+.favorite-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C9A45C;
+    font-size: 14px;
+    letter-spacing: 4px;
+}
+
+
+/* REMOVE FAVORITE */
+
+.remove-favorite {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    color: #C9A45C;
+    text-decoration: none;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+.remove-favorite:hover {
+    background: #C9A45C;
+    color: #FFFFFF;
+}
+
+
+/* INFO */
+
+.favorite-info {
+    padding: 22px;
+}
+
+.favorite-category {
+    display: block;
+    margin-bottom: 8px;
+    color: #B8914F;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.favorite-info h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.favorite-info h2 a {
+    color: #242424;
+    text-decoration: none;
+}
+
+.favorite-info h2 a:hover {
+    color: #B8914F;
+}
+
+.favorite-description {
+    margin: 0 0 16px;
+    color: #77716A;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* META */
+
+.favorite-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.favorite-price {
+    color: #242424;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.favorite-rating {
+    color: #B8914F;
+    font-size: 11px;
+}
+
+
+/* ACTIONS */
+
+.favorite-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.view-favorite,
+.favorite-cart {
+    flex: 1;
+    padding: 11px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.view-favorite {
+    background: #FFFFFF;
+    border: 1px solid #C9A45C;
+    color: #242424;
+}
+
+.view-favorite:hover {
+    background: #C9A45C;
+    color: #FFFFFF;
+}
+
+.favorite-cart {
+    background: #242424;
+    border: 1px solid #242424;
+    color: #FFFFFF;
+}
+
+.favorite-cart:hover {
+    background: #C9A45C;
+    border-color: #C9A45C;
+}
+
+
+/* OUT OF STOCK */
+
+.out-of-stock {
+    flex: 1;
+    padding: 11px 8px;
+    text-align: center;
+    background: #F4F1EC;
+    border: 1px solid #E8E0D4;
+    color: #77716A;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+
+/* BOTTOM */
+
+.favorites-bottom {
+    margin-top: 55px;
+    padding-top: 30px;
+    border-top: 1px solid #E8E0D4;
+    text-align: center;
+}
+
+.favorites-bottom p {
+    margin: 0 0 15px;
+    color: #77716A;
+    font-size: 13px;
+}
+
+.favorites-bottom a {
+    color: #B8914F;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+.favorites-bottom a:hover {
+    color: #242424;
+}
+
+
+/* EMPTY STATE */
+
+.favorites-empty {
+    max-width: 600px;
+    margin: 30px auto 0;
+    padding: 80px 30px;
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    text-align: center;
+}
+
+.empty-heart {
+    margin-bottom: 20px;
+    color: #C9A45C;
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.favorites-empty h2 {
+    margin: 8px 0 12px;
+    color: #242424;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.favorites-empty p {
+    max-width: 400px;
+    margin: 0 auto 28px;
+    color: #77716A;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.browse-button {
+    display: inline-block;
+    padding: 13px 24px;
+    background: #242424;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+}
+
+.browse-button:hover {
+    background: #C9A45C;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+
+    .favorites-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .favorites-page {
+        padding: 50px 0 70px;
+    }
+
+    .favorites-header h1 {
+        font-size: 34px;
+    }
+
+    .favorites-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .favorite-image {
+        height: 280px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .favorites-container {
+        width: 92%;
+    }
+
+    .favorites-header h1 {
+        font-size: 30px;
+    }
+
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .favorite-image {
+        height: 350px;
+    }
+
+    .favorites-empty {
+        padding: 60px 20px;
+    }
+
+}

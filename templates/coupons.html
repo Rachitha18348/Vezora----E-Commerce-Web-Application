@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}Coupons | VEZORA{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/coupons.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="coupons-page">
+
+```
+<div class="coupons-header">
+
+    <p class="coupons-eyebrow">
+        VEZORA SAVINGS
+    </p>
+
+    <h1>Coupons</h1>
+
+    <p>
+        Apply an eligible coupon at checkout and enjoy
+        special savings on your order.
+    </p>
+
+</div>
+
+
+<div class="coupons-container">
+
+
+    <div class="coupon-card">
+
+        <div class="coupon-left">
+
+            <span class="coupon-label">
+                WELCOME OFFER
+            </span>
+
+            <h2>WELCOME10</h2>
+
+            <p>
+                Get 10% off on your eligible order.
+            </p>
+
+        </div>
+
+        <div class="coupon-right">
+
+            <span>
+                10% OFF
+            </span>
+
+            <button
+                type="button"
+                onclick="copyCoupon('WELCOME10')"
+            >
+                COPY CODE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="coupon-card">
+
+        <div class="coupon-left">
+
+            <span class="coupon-label">
+                VEZORA SPECIAL
+            </span>
+
+            <h2>VEZORA15</h2>
+
+            <p>
+                Get 15% off on eligible purchases.
+            </p>
+
+        </div>
+
+        <div class="coupon-right">
+
+            <span>
+                15% OFF
+            </span>
+
+            <button
+                type="button"
+                onclick="copyCoupon('VEZORA15')"
+            >
+                COPY CODE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="coupon-card">
+
+        <div class="coupon-left">
+
+            <span class="coupon-label">
+                SPECIAL SAVINGS
+            </span>
+
+            <h2>ELAN20</h2>
+
+            <p>
+                Enjoy 20% off on eligible VEZORA purchases.
+            </p>
+
+        </div>
+
+        <div class="coupon-right">
+
+            <span>
+                20% OFF
+            </span>
+
+            <button
+                type="button"
+                onclick="copyCoupon('ELAN20')"
+            >
+                COPY CODE
+            </button>
+
+        </div>
+
+    </div>
+
+
+</div>
+```
+
+</section>
+
+<script>
+
+function copyCoupon(code) {
+
+    navigator.clipboard.writeText(code);
+
+    alert("Coupon code " + code + " copied!");
+
+}
+
+</script>
+
+{% endblock %}

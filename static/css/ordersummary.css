@@ -1,0 +1,399 @@
+.order-summary-page {
+    min-height: calc(100vh - 160px);
+    background: #FAF7F2;
+    padding: 70px 0 90px;
+}
+
+.order-summary-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* HEADER */
+
+.order-summary-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #B8914F;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.order-summary-header h1 {
+    margin: 0 0 14px;
+    color: #242424;
+    font-size: 42px;
+    font-weight: 500;
+}
+
+.order-summary-header p {
+    margin: 0;
+    color: #77716A;
+    font-size: 14px;
+}
+
+
+/* LAYOUT */
+
+.order-summary-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 35px;
+    align-items: start;
+}
+
+.order-summary-main {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+
+/* SECTION */
+
+.summary-section {
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    padding: 30px;
+}
+
+.summary-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E8E0D4;
+}
+
+.step-number {
+    color: #C9A45C;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.summary-section-heading .section-label {
+    margin-bottom: 5px;
+}
+
+.summary-section-heading h2 {
+    margin: 0;
+    color: #242424;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+
+/* ADDRESS */
+
+.selected-address {
+    position: relative;
+    padding: 22px;
+    background: #FAF7F2;
+    border: 1px solid #E8E0D4;
+}
+
+.selected-address-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.selected-address-top strong {
+    color: #242424;
+    font-size: 14px;
+}
+
+.selected-address-top span {
+    color: #B8914F;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.selected-address p {
+    margin: 5px 0;
+    color: #6B6B6B;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.selected-address .address-phone {
+    margin-top: 12px;
+    color: #242424;
+}
+
+.change-address {
+    display: inline-block;
+    margin-top: 15px;
+    color: #B8914F;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+}
+
+.change-address:hover {
+    color: #242424;
+}
+
+
+/* ITEMS */
+
+.summary-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E0D4;
+}
+
+.summary-item:first-child {
+    padding-top: 0;
+}
+
+.summary-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.summary-item-image {
+    width: 85px;
+    height: 85px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #F4EFE8;
+    color: #C9A45C;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.summary-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.summary-item-info {
+    flex: 1;
+}
+
+.item-category {
+    display: block;
+    margin-bottom: 5px;
+    color: #B8914F;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+.summary-item-info h3 {
+    margin: 0 0 7px;
+    color: #242424;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.summary-item-info p {
+    margin: 0;
+    color: #77716A;
+    font-size: 10px;
+}
+
+.summary-item-price {
+    color: #242424;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* NOTE */
+
+.order-note {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid #E8E0D4;
+}
+
+.order-note span {
+    color: #C9A45C;
+    font-size: 18px;
+}
+
+.order-note p {
+    margin: 0;
+    color: #77716A;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+
+/* FINAL SUMMARY */
+
+.final-summary {
+    position: sticky;
+    top: 100px;
+}
+
+.final-summary-box {
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    padding: 30px;
+}
+
+.summary-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #B8914F;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+}
+
+.final-summary-box h2 {
+    margin: 0 0 28px;
+    color: #242424;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    color: #6B6B6B;
+    font-size: 11px;
+}
+
+.free {
+    color: #4F8A63;
+    font-weight: 600;
+}
+
+.price-divider {
+    height: 1px;
+    margin: 24px 0;
+    background: #E8E0D4;
+}
+
+.final-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    color: #242424;
+    font-size: 14px;
+}
+
+.final-total strong {
+    font-size: 19px;
+}
+
+
+/* PAYMENT BUTTON */
+
+.payment-button {
+    display: block;
+    width: 100%;
+    padding: 15px 10px;
+    background: #242424;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    transition: all 0.3s ease;
+}
+
+.payment-button:hover {
+    background: #C9A45C;
+}
+
+.back-link {
+    display: block;
+    margin-top: 18px;
+    color: #B8914F;
+    text-align: center;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.back-link:hover {
+    color: #242424;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .order-summary-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .final-summary {
+        position: static;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .order-summary-page {
+        padding: 50px 0 70px;
+    }
+
+    .order-summary-container {
+        width: 92%;
+    }
+
+    .order-summary-header h1 {
+        font-size: 34px;
+    }
+
+    .summary-section,
+    .final-summary-box {
+        padding: 22px;
+    }
+
+    .summary-item {
+        gap: 12px;
+    }
+
+    .summary-item-image {
+        width: 65px;
+        height: 65px;
+    }
+
+    .summary-item-price {
+        font-size: 11px;
+    }
+
+}

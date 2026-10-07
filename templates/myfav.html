@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Favorites | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/myfav.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="favorites-page">
+
+    <div class="favorites-container">
+
+        <div class="favorites-header">
+
+            <span class="section-label">
+                YOUR COLLECTION
+            </span>
+
+            <h1>
+                My Favorites
+            </h1>
+
+            <p>
+                Pieces you've chosen to keep close.
+            </p>
+
+        </div>
+
+
+        {% if products %}
+
+        <div class="favorites-count">
+            {{ products|length }}
+            {% if products|length == 1 %}
+                Favorite
+            {% else %}
+                Favorites
+            {% endif %}
+        </div>
+
+
+        <div class="favorites-grid">
+
+            {% for product in products %}
+
+            <article class="favorite-card">
+
+                <div class="favorite-image">
+
+                    {% if product.image %}
+
+                    <img src="{{ product.image }}"
+                         alt="{{ product.name }}">
+
+                    {% else %}
+
+                    <div class="favorite-placeholder">
+                        VEZORA
+                    </div>
+
+                    {% endif %}
+
+
+                    <a href="{{ url_for('removefromfav',
+                                        product_id=product.id) }}"
+                       class="remove-favorite"
+                       title="Remove from Favorites">
+
+                        ♥
+
+                    </a>
+
+                </div>
+
+
+                <div class="favorite-info">
+
+                    <span class="favorite-category">
+                        {{ product.category }}
+                    </span>
+
+
+                    <h2>
+                        <a href="{{ url_for('productdetails',
+                                            product_id=product.id) }}">
+
+                            {{ product.name }}
+
+                        </a>
+                    </h2>
+
+
+                    {% if product.description %}
+
+                    <p class="favorite-description">
+                        {{ product.description }}
+                    </p>
+
+                    {% endif %}
+
+
+                    <div class="favorite-meta">
+
+                        <span class="favorite-price">
+                            ₹{{ "%.2f"|format(product.price) }}
+                        </span>
+
+
+                        {% if product.rating and product.rating > 0 %}
+
+                        <span class="favorite-rating">
+                            ★ {{ "%.1f"|format(product.rating) }}
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="favorite-actions">
+
+                        <a href="{{ url_for('productdetails',
+                                            product_id=product.id) }}"
+                           class="view-favorite">
+
+                            VIEW PRODUCT
+
+                        </a>
+
+
+                        {% if product.stock > 0 %}
+
+                        <a href="{{ url_for('addtocart',
+                                            product_id=product.id) }}"
+                           class="favorite-cart">
+
+                            ADD TO CART
+
+                        </a>
+
+                        {% else %}
+
+                        <span class="out-of-stock">
+                            OUT OF STOCK
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="favorites-bottom">
+
+            <p>
+                Looking for something else?
+            </p>
+
+            <a href="{{ url_for('products') }}">
+                CONTINUE SHOPPING
+            </a>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="favorites-empty">
+
+            <div class="empty-heart">
+                ♡
+            </div>
+
+            <span class="section-label">
+                YOUR FAVORITES
+            </span>
+
+            <h2>
+                Nothing saved yet.
+            </h2>
+
+            <p>
+                When you find something you love,
+                save it here for later.
+            </p>
+
+            <a href="{{ url_for('products') }}"
+               class="browse-button">
+
+                EXPLORE THE COLLECTION
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

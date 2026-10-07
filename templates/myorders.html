@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders | VEZORA{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/myorders.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="orders-page">
+
+    <div class="orders-header">
+
+        <p class="orders-eyebrow">
+            YOUR VEZORA
+        </p>
+
+        <h1>My Orders</h1>
+
+        <p>
+            View your orders and keep track of every purchase.
+        </p>
+
+    </div>
+
+
+    {% if orders %}
+
+    <div class="orders-list">
+
+        {% for order in orders %}
+
+        <div class="order-card">
+
+            <div class="order-top">
+
+                <div>
+                    <p class="order-label">
+                        ORDER
+                    </p>
+
+                    <h2>
+                        #{{ order.id }}
+                    </h2>
+                </div>
+
+
+                <div class="order-date">
+
+                    <span>Placed on</span>
+
+                    <strong>
+                        {{ order.created_at.strftime("%d %b %Y") }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-divider"></div>
+
+
+            <div class="order-details">
+
+                <div class="order-detail">
+
+                    <span>Order Total</span>
+
+                    <strong>
+                        ₹{{ "%.2f"|format(order.total_amount) }}
+                    </strong>
+
+                </div>
+
+
+                <div class="order-detail">
+
+                    <span>Payment</span>
+
+                    <strong>
+                        {{ order.payment_method or "Not Available" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="order-detail">
+
+                    <span>Payment Status</span>
+
+                    <strong class="payment-status {{ order.payment_status|lower }}">
+                        {{ order.payment_status }}
+                    </strong>
+
+                </div>
+
+
+                <div class="order-detail">
+
+                    <span>Order Status</span>
+
+                    <strong class="order-status {{ order.status|lower|replace(' ', '-') }}">
+                        {{ order.status }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-actions">
+
+                <a href="{{ url_for('orderdetails', order_id=order.id) }}" class="track-button">
+                    VIEW ORDER DETAILS
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-orders">
+
+        <div class="empty-icon">
+            ORDERS
+        </div>
+
+        <h2>No Orders Yet</h2>
+
+        <p>
+            Your VEZORA orders will appear here after you make a purchase.
+        </p>
+
+        <a href="{{ url_for('products') }}" class="shop-button">
+            START SHOPPING
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

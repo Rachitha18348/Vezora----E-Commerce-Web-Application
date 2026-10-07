@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+
+{% block title %}Payment | VEZORA{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="payment-page">
+
+
+<div class="payment-header">
+
+    <p class="payment-eyebrow">
+        SECURE CHECKOUT
+    </p>
+
+    <h1>Payment</h1>
+
+    <p>
+        Choose your preferred payment method to complete your VEZORA order.
+    </p>
+
+</div>
+
+
+{% if error %}
+
+    <div class="payment-error">
+        {{ error }}
+    </div>
+
+{% endif %}
+
+
+<form method="POST" class="payment-layout">
+
+    <div class="payment-method-section">
+
+        <div class="section-heading">
+
+            <h2>Payment Method</h2>
+
+            <p>
+                Select how you would like to pay.
+            </p>
+
+        </div>
+
+
+        <!-- CREDIT CARD -->
+
+        <label class="payment-option">
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="Credit Card"
+                required
+            >
+
+            <div class="payment-option-content">
+
+                <div class="payment-icon">
+                    CARD
+                </div>
+
+                <div>
+
+                    <h3>
+                        Credit Card
+                    </h3>
+
+                    <p>
+                        Pay securely using your credit card.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </label>
+
+
+        <!-- DEBIT CARD -->
+
+        <label class="payment-option">
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="Debit Card"
+            >
+
+            <div class="payment-option-content">
+
+                <div class="payment-icon">
+                    CARD
+                </div>
+
+                <div>
+
+                    <h3>
+                        Debit Card
+                    </h3>
+
+                    <p>
+                        Pay securely using your debit card.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </label>
+
+
+        <!-- UPI -->
+
+        <label class="payment-option">
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="UPI"
+            >
+
+            <div class="payment-option-content">
+
+                <div class="payment-icon">
+                    UPI
+                </div>
+
+                <div>
+
+                    <h3>
+                        UPI
+                    </h3>
+
+                    <p>
+                        Pay using your preferred UPI app.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </label>
+
+
+        <!-- NET BANKING -->
+
+        <label class="payment-option">
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="Net Banking"
+            >
+
+            <div class="payment-option-content">
+
+                <div class="payment-icon">
+                    NET
+                </div>
+
+                <div>
+
+                    <h3>
+                        Net Banking
+                    </h3>
+
+                    <p>
+                        Pay directly through your bank.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </label>
+
+
+        <!-- CASH ON DELIVERY -->
+
+        <label class="payment-option">
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="Cash on Delivery"
+            >
+
+            <div class="payment-option-content">
+
+                <div class="payment-icon">
+                    COD
+                </div>
+
+                <div>
+
+                    <h3>
+                        Cash on Delivery
+                    </h3>
+
+                    <p>
+                        Pay when your order is delivered.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </label>
+
+    </div>
+
+
+    <!-- ORDER SUMMARY -->
+
+    <aside class="payment-summary">
+
+        <div class="summary-card">
+
+            <p class="summary-label">
+                ORDER TOTAL
+            </p>
+
+
+            <div class="summary-total">
+
+                ₹{{ "%.2f"|format(order_total) }}
+
+            </div>
+
+
+            <div class="summary-divider"></div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Order Total
+                </span>
+
+                <span>
+                    ₹{{ "%.2f"|format(order_total) }}
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Delivery
+                </span>
+
+                <span class="free-text">
+                    FREE
+                </span>
+
+            </div>
+
+
+            <div class="summary-divider"></div>
+
+
+            <div class="summary-final">
+
+                <span>
+                    Total Payable
+                </span>
+
+                <strong>
+                    ₹{{ "%.2f"|format(order_total) }}
+                </strong>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="payment-button"
+            >
+                CONTINUE
+            </button>
+
+
+            <p class="secure-note">
+                Your payment information is handled securely.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('ordersummary') }}"
+            class="back-link"
+        >
+            ← Back to Order Summary
+        </a>
+
+    </aside>
+
+</form>
+
+
+</section>
+
+{% endblock %}

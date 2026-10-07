@@ -1,0 +1,455 @@
+{% extends "base.html" %}
+
+{% block title %}
+VEZORA | Jewelry & Watches
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">
+            <span></span>
+            THE NEW VEZORA EDIT
+        </div>
+
+        <h1>
+            Jewelry that
+            <span>feels timeless.</span>
+        </h1>
+
+        <p>
+            Discover refined jewelry and watches designed
+            to become part of your everyday moments.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('products') }}" class="btn-gold">
+                Shop Now
+            </a>
+
+            <a href="{{ url_for('categories') }}" class="btn-link">
+                Explore Collection
+                <span>→</span>
+            </a>
+
+        </div>
+
+        <div class="hero-features">
+
+            <div>
+                <strong>01</strong>
+                <p>Curated<br>Collections</p>
+            </div>
+
+            <div>
+                <strong>02</strong>
+                <p>Timeless<br>Design</p>
+            </div>
+
+            <div>
+                <strong>03</strong>
+                <p>Made for<br>Every Moment</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <div class="image-frame">
+
+            <div class="hero-product">
+
+                <div class="hero-product-ring"></div>
+
+                <div class="hero-product-chain"></div>
+
+                <div class="hero-product-stone"></div>
+
+            </div>
+
+            <div class="image-brand">
+                VEZORA
+            </div>
+
+            <div class="image-caption">
+                <span>THE SIGNATURE EDIT</span>
+                <span>2026</span>
+            </div>
+
+        </div>
+
+        <div class="floating-card">
+
+            <span>NEW</span>
+
+            <h3>
+                The<br>
+                Signature Edit
+            </h3>
+
+            <a href="{{ url_for('products') }}">
+                Discover →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MARQUEE
+========================= -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>TIMELESS JEWELRY</span>
+        <i>✦</i>
+        <span>REFINED WATCHES</span>
+        <i>✦</i>
+        <span>EVERYDAY ELEGANCE</span>
+        <i>✦</i>
+        <span>TIMELESS JEWELRY</span>
+        <i>✦</i>
+        <span>REFINED WATCHES</span>
+        <i>✦</i>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CATEGORY SECTION
+========================= -->
+
+<section class="category-section">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-label">
+                DISCOVER
+            </span>
+
+            <h2>
+                Shop by <em>Category</em>
+            </h2>
+        </div>
+
+        <a href="{{ url_for('categories') }}">
+            View all categories →
+        </a>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        <a href="{{ url_for('category', category_name='Necklaces') }}"
+           class="category-card category-one">
+
+            <div class="category-number">01</div>
+
+            <div class="category-content">
+                <span>DELICATE & REFINED</span>
+                <h3>Necklaces</h3>
+                <p>Explore →</p>
+            </div>
+
+        </a>
+
+
+        <a href="{{ url_for('category', category_name='Rings') }}"
+           class="category-card category-two">
+
+            <div class="category-number">02</div>
+
+            <div class="category-content">
+                <span>MADE TO LAST</span>
+                <h3>Rings</h3>
+                <p>Explore →</p>
+            </div>
+
+        </a>
+
+
+        <a href="{{ url_for('category', category_name='Earrings') }}"
+           class="category-card category-three">
+
+            <div class="category-number">03</div>
+
+            <div class="category-content">
+                <span>EFFORTLESS STYLE</span>
+                <h3>Earrings</h3>
+                <p>Explore →</p>
+            </div>
+
+        </a>
+
+
+        <a href="{{ url_for('category', category_name='Watches') }}"
+           class="category-card category-four">
+
+            <div class="category-number">04</div>
+
+            <div class="category-content">
+                <span>TIME, BEAUTIFULLY KEPT</span>
+                <h3>Watches</h3>
+                <p>Explore →</p>
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BRAND STORY
+========================= -->
+
+<section class="story-section">
+
+    <div class="story-image">
+
+        <div class="story-circle">
+            <span>V</span>
+        </div>
+
+        <div class="story-small-text">
+            EST. 2026
+        </div>
+
+    </div>
+
+
+    <div class="story-content">
+
+        <span class="section-label">
+            OUR PHILOSOPHY
+        </span>
+
+        <h2>
+            The little details
+            <em>matter.</em>
+        </h2>
+
+        <p>
+            VEZORA was created for those who believe that
+            elegance doesn't need to be loud. From delicate
+            jewelry to refined watches, every piece is chosen
+            to bring character to your everyday style.
+        </p>
+
+        <a href="{{ url_for('about') }}" class="story-link">
+            Discover Our Story
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURED SECTION
+========================= -->
+
+<section class="featured-section">
+
+    <div class="section-heading centered">
+
+        <span class="section-label">
+            THE EDIT
+        </span>
+
+        <h2>
+            Pieces worth <em>keeping.</em>
+        </h2>
+
+        <p>
+            A selection of styles made to stay with you.
+        </p>
+
+    </div>
+
+
+    <div class="featured-grid">
+
+        <div class="featured-product">
+
+            <div class="product-image">
+                <span>VEZORA</span>
+            </div>
+
+            <div class="product-info">
+                <div>
+                    <h3>Signature Gold Necklace</h3>
+                    <p>Necklaces</p>
+                </div>
+
+                <strong>₹4,999</strong>
+            </div>
+
+        </div>
+
+
+        <div class="featured-product">
+
+            <div class="product-image watch-product">
+                <span>VEZORA</span>
+            </div>
+
+            <div class="product-info">
+                <div>
+                    <h3>Classic Champagne Watch</h3>
+                    <p>Watches</p>
+                </div>
+
+                <strong>₹6,499</strong>
+            </div>
+
+        </div>
+
+
+        <div class="featured-product">
+
+            <div class="product-image ring-product">
+                <span>VEZORA</span>
+            </div>
+
+            <div class="product-info">
+                <div>
+                    <h3>Minimal Gold Ring</h3>
+                    <p>Rings</p>
+                </div>
+
+                <strong>₹2,999</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <a href="{{ url_for('products') }}" class="all-products">
+        VIEW ALL PRODUCTS →
+    </a>
+
+</section>
+
+
+<!-- =========================
+     WHY VEZORA
+========================= -->
+
+<section class="why-section">
+
+    <div class="why-heading">
+
+        <span class="section-label">
+            WHY VEZORA
+        </span>
+
+        <h2>
+            Made for your
+            <em>moments.</em>
+        </h2>
+
+    </div>
+
+
+    <div class="why-grid">
+
+        <div class="why-item">
+
+            <div class="why-icon">✦</div>
+
+            <h3>Thoughtfully Curated</h3>
+
+            <p>
+                Every piece is selected to bring
+                timeless character to your collection.
+            </p>
+
+        </div>
+
+
+        <div class="why-item">
+
+            <div class="why-icon">◇</div>
+
+            <h3>Elegant by Design</h3>
+
+            <p>
+                Clean silhouettes and refined details
+                designed to complement your style.
+            </p>
+
+        </div>
+
+
+        <div class="why-item">
+
+            <div class="why-icon">♡</div>
+
+            <h3>Made to Feel Special</h3>
+
+            <p>
+                Whether it's everyday or extraordinary,
+                find a piece that feels uniquely yours.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final-section">
+
+    <div class="final-content">
+
+        <span>
+            YOUR STYLE. YOUR STORY.
+        </span>
+
+        <h2>
+            Find your
+            <em>signature.</em>
+        </h2>
+
+        <a href="{{ url_for('products') }}" class="btn-gold">
+            Explore VEZORA
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,410 @@
+/* =====================================================
+   VEZORA BASE
+   Common Navbar + Footer Styles
+   Ivory + Champagne Gold
+===================================================== */
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FAF7F2;
+    color: #242424;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    width: 100%;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E8E0D4;
+    position: relative;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1350px;
+    height: 82px;
+    margin: auto;
+    padding: 0 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    letter-spacing: 6px;
+    color: #242424;
+    transition: 0.3s;
+}
+
+.logo:hover {
+    color: #C9A45C;
+}
+
+
+/* =====================================================
+   NAVIGATION LINKS
+===================================================== */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.nav-links a {
+    position: relative;
+
+    color: #55504A;
+    font-size: 11px;
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 1px;
+
+    background: #C9A45C;
+
+    transition: width 0.3s;
+}
+
+.nav-links a:hover {
+    color: #C9A45C;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+/* =====================================================
+   NAV ACTIONS
+===================================================== */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-icon {
+    color: #242424;
+    font-size: 19px;
+    line-height: 1;
+
+    transition: 0.3s;
+}
+
+.nav-icon:hover {
+    color: #C9A45C;
+}
+
+.login-link {
+    padding-left: 20px;
+
+    border-left: 1px solid #E8E0D4;
+
+    color: #242424;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+
+    transition: 0.3s;
+}
+
+.login-link:hover {
+    color: #C9A45C;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+    background: #242424;
+    color: #FFFFFF;
+    margin-top: 0;
+}
+
+.footer-container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 75px 50px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+}
+
+
+/* =====================================================
+   FOOTER BRAND
+===================================================== */
+
+.footer-logo {
+    display: inline-block;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    letter-spacing: 6px;
+
+    color: #C9A45C;
+
+    margin-bottom: 18px;
+}
+
+.footer-brand p {
+    max-width: 280px;
+
+    color: #B8B4AE;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   FOOTER COLUMNS
+===================================================== */
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-column h3 {
+    color: #FFFFFF;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    font-weight: 400;
+
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    color: #B8B4AE;
+    font-size: 11px;
+
+    transition: 0.3s;
+}
+
+.footer-column a:hover {
+    color: #C9A45C;
+    transform: translateX(3px);
+}
+
+
+/* =====================================================
+   FOOTER BOTTOM
+===================================================== */
+
+.footer-bottom {
+    max-width: 1250px;
+    margin: auto;
+
+    padding: 20px 50px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-bottom p {
+    color: #8F8B85;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   RESPONSIVE NAVBAR
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .nav-container {
+        padding: 0 30px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-actions {
+        gap: 14px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .nav-container {
+        height: auto;
+        padding: 22px 25px;
+
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+
+        justify-content: center;
+
+        padding-top: 15px;
+        border-top: 1px solid #E8E0D4;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 45px;
+        padding: 60px 30px;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+    }
+
+    .footer-bottom {
+        padding: 20px 30px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 550px) {
+
+    .nav-container {
+        padding: 18px 20px;
+    }
+
+    .logo {
+        font-size: 19px;
+        letter-spacing: 4px;
+    }
+
+    .nav-actions {
+        gap: 12px;
+    }
+
+    .nav-icon {
+        font-size: 17px;
+    }
+
+    .login-link {
+        padding-left: 12px;
+        font-size: 9px;
+    }
+
+    .nav-links {
+        gap: 16px;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .nav-links a {
+        font-size: 9px;
+        white-space: nowrap;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        padding: 50px 20px;
+        gap: 35px 20px;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+    }
+
+    .footer-bottom {
+        padding: 18px 20px;
+
+        flex-direction: column;
+        gap: 5px;
+
+        text-align: center;
+    }
+}
+.register-link {
+    padding: 10px 18px;
+
+    border: 1px solid #C9A45C;
+
+    color: #C9A45C;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+
+    transition: 0.3s;
+}
+
+.register-link:hover {
+    background: #C9A45C;
+    color: #FFFFFF;
+}

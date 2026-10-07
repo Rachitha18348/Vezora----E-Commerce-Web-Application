@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Payment Failed | VEZORA{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/paymentfailure.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="failure-page">
+
+    <div class="failure-card">
+
+        <div class="failure-icon">
+            ×
+        </div>
+
+        <p class="failure-eyebrow">
+            PAYMENT UNSUCCESSFUL
+        </p>
+
+        <h1>Payment Could Not Be Completed</h1>
+
+        <p class="failure-message">
+            {{ error_message }}
+        </p>
+
+
+        <div class="failure-info">
+
+            <div class="failure-info-row">
+                <span>Payment Status</span>
+                <strong>Failed</strong>
+            </div>
+
+            <div class="failure-info-row">
+                <span>Order Status</span>
+                <strong>Payment Pending</strong>
+            </div>
+
+        </div>
+
+
+        <div class="failure-actions">
+
+            <a
+                href="{{ url_for('payment') }}"
+                class="primary-button"
+            >
+                TRY AGAIN
+            </a>
+
+            <a
+                href="{{ url_for('mycart') }}"
+                class="secondary-button"
+            >
+                RETURN TO CART
+            </a>
+
+        </div>
+
+
+        <p class="failure-note">
+            Don't worry. If any amount was deducted, please allow some time
+            for the payment status to be updated.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

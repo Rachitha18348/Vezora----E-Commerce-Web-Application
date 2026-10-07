@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Search | VEZORA{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="search-page">
+
+
+<div class="search-header">
+
+    <p class="search-eyebrow">
+        VEZORA COLLECTION
+    </p>
+
+    {% if query %}
+
+        <h1>
+            Search Results
+        </h1>
+
+        <p>
+            Showing results for
+            <strong>"{{ query }}"</strong>
+        </p>
+
+    {% else %}
+
+        <h1>
+            Search
+        </h1>
+
+        <p>
+            Discover jewelry and watches from the VEZORA collection.
+        </p>
+
+    {% endif %}
+
+</div>
+
+
+<form
+    method="GET"
+    action="{{ url_for('search') }}"
+    class="search-form"
+>
+
+    <input
+        type="text"
+        name="q"
+        value="{{ query }}"
+        placeholder="Search necklaces, rings, earrings, watches..."
+    >
+
+    <button type="submit">
+        SEARCH
+    </button>
+
+</form>
+
+
+{% if products %}
+
+    <div class="search-grid">
+
+        {% for product in products %}
+
+            <article class="search-product-card">
+
+                <a
+                    href="{{ url_for('productdetails', product_id=product.id) }}"
+                    class="product-image"
+                >
+
+                    <img
+                        src="{{ product.image }}"
+                        alt="{{ product.name }}"
+                    >
+
+                </a>
+
+
+                <div class="product-details">
+
+                    <span class="product-category">
+                        {{ product.category }}
+                    </span>
+
+                    <h2>
+                        {{ product.name }}
+                    </h2>
+
+                    <p class="product-price">
+                        ₹{{ "%.2f"|format(product.price) }}
+                    </p>
+
+                    <a
+                        href="{{ url_for('productdetails', product_id=product.id) }}"
+                        class="view-product"
+                    >
+                        VIEW PRODUCT →
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% endfor %}
+
+    </div>
+
+
+{% elif query %}
+
+    <div class="no-results">
+
+        <div class="no-results-icon">
+            ×
+        </div>
+
+        <h2>
+            No Products Found
+        </h2>
+
+        <p>
+            We couldn't find any products matching
+            "{{ query }}".
+        </p>
+
+        <a href="{{ url_for('products') }}">
+            VIEW ALL PRODUCTS →
+        </a>
+
+    </div>
+
+
+{% else %}
+
+    <div class="search-empty">
+
+        <p>
+            Start searching to discover your next VEZORA piece.
+        </p>
+
+    </div>
+
+{% endif %}
+
+</section>
+
+{% endblock %}

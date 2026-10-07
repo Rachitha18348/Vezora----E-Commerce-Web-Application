@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ product.name }} | VEZORA
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/productdetails.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="product-details-page">
+
+    <div class="product-details-container">
+
+        <a href="{{ url_for('products') }}" class="product-back">
+            ← BACK TO SHOP
+        </a>
+
+        <div class="product-details">
+
+            <div class="product-details-image">
+
+                {% if product.image %}
+
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+
+                {% else %}
+
+                <div class="product-details-placeholder">
+                    <span>VEZORA</span>
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            <div class="product-details-info">
+
+                <span class="product-details-category">
+                    {{ product.category }}
+                </span>
+
+                <h1>
+                    {{ product.name }}
+                </h1>
+
+                {% if product.rating and product.rating > 0 %}
+
+                <div class="product-details-rating">
+                    ★ {{ "%.1f"|format(product.rating) }}
+                </div>
+
+                {% endif %}
+
+                <div class="product-details-price">
+                    ₹{{ "%.2f"|format(product.price) }}
+                </div>
+
+                {% if product.description %}
+
+                <p class="product-details-description">
+                    {{ product.description }}
+                </p>
+
+                {% else %}
+
+                <p class="product-details-description">
+                    A refined VEZORA piece designed to add
+                    timeless elegance to your collection.
+                </p>
+
+                {% endif %}
+
+                <div class="product-stock">
+
+                    {% if product.stock > 0 %}
+                    <span class="stock-dot"></span>
+                    In Stock
+                    {% else %}
+                    <span class="out-stock-dot"></span>
+                    Out of Stock
+                    {% endif %}
+
+                </div>
+
+                <div class="product-actions">
+
+                    {% if product.stock > 0 %}
+
+                    <a href="{{ url_for('addtocart',
+                                       product_id=product.id) }}" class="details-cart-button">
+                        ADD TO CART
+                    </a>
+
+                    {% else %}
+
+                    <button class="details-cart-button disabled" disabled>
+                        OUT OF STOCK
+                    </button>
+
+                    {% endif %}
+
+                    {% if product.is_favorite %}
+
+                    <a href="{{ url_for('removefromfav',
+                                       product_id=product.id) }}" class="details-favorite-button">
+                        ♥
+                    </a>
+
+                    {% else %}
+
+                    <a href="{{ url_for('addtofav',
+                                       product_id=product.id) }}" class="details-favorite-button">
+                        ♡
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="product-information">
+
+                    <div class="information-row">
+                        <span>Category</span>
+                        <strong>{{ product.category }}</strong>
+                    </div>
+
+                    <div class="information-row">
+                        <span>Availability</span>
+
+                        {% if product.stock > 0 %}
+                        <strong>Available</strong>
+                        {% else %}
+                        <strong>Currently Unavailable</strong>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="information-row">
+                        <span>Product ID</span>
+                        <strong>#{{ product.id }}</strong>
+                    </div>
+
+                </div>
+
+                <div class="product-note">
+
+                    <span>◇</span>
+
+                    <p>
+                        Every VEZORA piece is selected with
+                        timeless style and everyday elegance in mind.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

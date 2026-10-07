@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile | VEZORA{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-page">
+
+    <div class="profile-container">
+
+        <div class="profile-header">
+            <span class="profile-label">MY ACCOUNT</span>
+
+            <h1>My Profile</h1>
+
+            <p>
+                Manage your personal information and account preferences.
+            </p>
+        </div>
+
+
+        <div class="profile-layout">
+
+            <!-- Profile Information -->
+
+            <div class="profile-card">
+
+                <div class="card-heading">
+                    <span class="heading-line"></span>
+
+                    <div>
+                        <h2>Personal Information</h2>
+                        <p>Keep your account details up to date.</p>
+                    </div>
+                </div>
+
+
+                {% if error %}
+                    <div class="profile-error">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+
+                <form method="POST">
+
+                    <div class="profile-form-group">
+
+                        <label for="name">FULL NAME</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value="{{ user.name }}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="profile-form-group">
+
+                        <label for="email">EMAIL ADDRESS</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            value="{{ user.email }}"
+                            readonly
+                        >
+
+                        <small>
+                            Email address cannot be changed here.
+                        </small>
+
+                    </div>
+
+
+                    <div class="profile-form-group">
+
+                        <label for="phone">PHONE NUMBER</label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value="{{ user.phone }}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="profile-save-button"
+                    >
+                        SAVE CHANGES
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Account Menu -->
+
+            <div class="account-card">
+
+                <div class="account-heading">
+
+                    <span class="account-label">
+                        ACCOUNT
+                    </span>
+
+                    <h2>Quick Access</h2>
+
+                </div>
+
+
+                <div class="account-links">
+
+                    <a href="{{ url_for('myorders') }}">
+                        <div>
+                            <strong>My Orders</strong>
+                            <span>View your orders</span>
+                        </div>
+
+                        <span class="account-arrow">→</span>
+                    </a>
+
+
+                    <a href="{{ url_for('address') }}">
+                        <div>
+                            <strong>My Addresses</strong>
+                            <span>Manage delivery addresses</span>
+                        </div>
+
+                        <span class="account-arrow">→</span>
+                    </a>
+
+
+                    <a href="{{ url_for('myfav') }}">
+                        <div>
+                            <strong>My Favorites</strong>
+                            <span>View saved pieces</span>
+                        </div>
+
+                        <span class="account-arrow">→</span>
+                    </a>
+
+
+                    <a href="{{ url_for('mycart') }}">
+                        <div>
+                            <strong>My Cart</strong>
+                            <span>View your shopping cart</span>
+                        </div>
+
+                        <span class="account-arrow">→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Account Information -->
+
+        <div class="profile-info">
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    ACCOUNT ID
+                </span>
+
+                <span class="info-value">
+                    #{{ user.id }}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    MEMBER SINCE
+                </span>
+
+                <span class="info-value">
+                    {{ user.created_at.strftime('%d %B %Y') }}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    ACCOUNT STATUS
+                </span>
+
+                <span class="status-active">
+                    ACTIVE
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}About Us | VEZORA{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="about-page">
+
+
+<div class="about-hero">
+
+    <p class="about-eyebrow">
+        THE VEZORA STORY
+    </p>
+
+    <h1>
+        Designed for Moments<br>
+        Worth Remembering
+    </h1>
+
+    <p>
+        VEZORA is a jewelry and watches e-commerce experience
+        created around timeless style, thoughtful design,
+        and effortless shopping.
+    </p>
+
+</div>
+
+
+<div class="about-content">
+
+    <div class="about-section">
+
+        <span class="about-number">
+            01
+        </span>
+
+        <div>
+
+            <h2>
+                Our Vision
+            </h2>
+
+            <p>
+                We believe that the right piece can make an
+                everyday moment feel special. VEZORA brings
+                together elegant jewelry and watches in a
+                refined online shopping experience.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-section">
+
+        <span class="about-number">
+            02
+        </span>
+
+        <div>
+
+            <h2>
+                Our Collection
+            </h2>
+
+            <p>
+                From delicate necklaces and elegant rings to
+                statement earrings and classic watches, our
+                collection is designed to complement different
+                styles and occasions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-section">
+
+        <span class="about-number">
+            03
+        </span>
+
+        <div>
+
+            <h2>
+                The VEZORA Experience
+            </h2>
+
+            <p>
+                From discovering a product to placing an order,
+                VEZORA focuses on keeping the shopping journey
+                simple, clear, and enjoyable.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="about-cta">
+
+    <p>
+        Discover something made for your style.
+    </p>
+
+    <a href="{{ url_for('products') }}">
+        EXPLORE THE COLLECTION →
+    </a>
+
+</div>
+
+
+</section>
+
+{% endblock %}
